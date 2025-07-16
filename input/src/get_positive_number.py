@@ -8,7 +8,7 @@
 # Programmer:    Gary Powell
 # Date:          Feb. 16, 2025
 #
-# Problem Statement: convert a string to an int or float, or complex
+# Problem Statement: convert a string to a positive int or float, or complex
 #   Check for bad inputs.
 #
 #
@@ -17,7 +17,7 @@
 # import the necessary python libraries
 from typing import Union
 
-def get_number(response: str) -> Union[int, float, complex]:
+def get_positive_number(response: str) -> Union[int, float, complex]:
     '''
     parse a string into either a float, or an int
 
@@ -35,10 +35,18 @@ def get_number(response: str) -> Union[int, float, complex]:
             """ we can't break here because it still might be complex."""
 
     if is_possible_complex:
-        return complex(response)
-    if is_possible_float:
-        return float(response)
-    return int(response)
+        # negative complex numbers make no sense in this context
+        result = complex(response)
+    elif is_possible_float:
+        result = float(response)
+        if result < 0:
+            raise ValueError
+    else:
+        result = int(response)
+        if result < 0:
+            raise ValueError
+
+    return result
 
 def main() -> None:
     '''
@@ -46,14 +54,14 @@ def main() -> None:
     '''
 
     # Print a welcome message to the screen
-    print("Welcome to the get a real number program.")
+    print("Welcome to the get a positive number program.")
 
-    input_text: str = input("Enter a real number: ")
+    input_text: str = input("Enter a positive number: ")
     try:
-        number: Union[int, float, complex]  = get_number(input_text)
+        number: Union[int, float, complex]  = get_positive_number(input_text)
         print(f"You entered {number}, which is a number")
     except ValueError:
-        print(f"{input_text} is not a number")
+        print(f"{input_text} is not a positive number")
 
     print("Done!")
 

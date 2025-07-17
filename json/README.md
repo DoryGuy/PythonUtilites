@@ -23,3 +23,7 @@ class TestData:
     def from_json(cls, json_str):
         return json.loads(json_str, cls=JsonDecimalDecoder)
 ```
+
+## example
+A simple example of how to create a json module to serialize and deserialize a class containing a custom class.
+field.

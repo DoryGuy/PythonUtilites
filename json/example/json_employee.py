@@ -13,7 +13,7 @@
 """
 
 import json
-from employee import HourlyEmployee, PartTimeFaculty, SalaryEmployee
+from employee import Employee, HourlyEmployee, PartTimeFaculty, SalaryEmployee
 from json_decimal import JsonDecimalDecoder
 
 class JsonEmployeeEncoder(json.JSONEncoder):
@@ -21,12 +21,9 @@ class JsonEmployeeEncoder(json.JSONEncoder):
 
     def default(self,obj):      # pylint: disable=arguments-renamed
         """ override the default """
-        if isinstance(obj, PartTimeFaculty):
-            return { '__PartTimeFaculty__': True, 'value': obj.to_json() }
-        if isinstance(obj, SalaryEmployee):
-            return { '__SalaryEmployee__': True, 'value': obj.to_json() }
-        if isinstance(obj, HourlyEmployee):
-            return { '__HourlyEmployee__': True, 'value': obj.to_json() }
+        if isinstance(obj, Employee):
+            if hasattr(obj, 'to_json') and callable(getattr(obj, 'to_json')):
+                return { "__" + obj.__class__.__name__ + "__": True, 'value': obj.to_json() }
         return obj.__dict__
 
 class JsonEmployeeDecoder(json.JSONDecoder):

@@ -46,9 +46,14 @@ class Employee:
         return "Employee"
 
     @classmethod
-    def from_json(cls, stuff):
+    def from_json(cls, json_stuff):
         """ from a json dict """
-        return cls(**stuff, cls=JsonDecimalDecoder)
+        # pylint: disable=possibly-used-before-assignment
+        if isinstance(json_stuff, str):
+            data = json.loads(json_stuff, cls=JsonDecimalDecoder)
+        elif isinstance(json_stuff, dict):
+            data = json_stuff
+        return cls(**data)
 
 @dataclass(kw_only=True)
 class PartTimeFaculty(Employee):
@@ -65,9 +70,14 @@ class PartTimeFaculty(Employee):
         return "PartTimeFaculty"
 
     @classmethod
-    def from_json(cls, stuff):
-        """ from a json dict """
-        return cls(**stuff, cls=JsonDecimalDecoder)
+    def from_json(cls, json_stuff):
+        """ create a PartTimeFaculty from json """
+        # pylint: disable=possibly-used-before-assignment
+        if isinstance(json_stuff, str):
+            data = json.loads(json_stuff, cls=JsonDecimalDecoder)
+        elif isinstance(json_stuff, dict):
+            data = json_stuff
+        return cls(**data)
 
 @dataclass(kw_only=True)
 class SalaryEmployee(Employee):
@@ -84,9 +94,14 @@ class SalaryEmployee(Employee):
         return "SalaryEmployee"
 
     @classmethod
-    def from_json(cls, stuff):
-        """ from a json dict """
-        return cls(**stuff, cls=JsonDecimalDecoder)
+    def from_json(cls, json_stuff):
+        """ from a SalaryEmployee from json """
+        # pylint: disable=possibly-used-before-assignment
+        if isinstance(json_stuff, str):
+            data = json.loads(json_stuff, cls=JsonDecimalDecoder)
+        elif isinstance(json_stuff, dict):
+            data = json_stuff
+        return cls(**data)
 
 
 @dataclass(kw_only=True)
@@ -104,6 +119,11 @@ class HourlyEmployee(Employee):
         return "HourlyEmployee"
 
     @classmethod
-    def from_json(cls, stuff):
-        """ from a json dict """
-        return cls(**stuff, cls=JsonDecimalDecoder)
+    def from_json(cls, json_stuff):
+        """ create a Hourly Employee from a json"""
+        # pylint: disable=possibly-used-before-assignment
+        if isinstance(json_stuff, str):
+            data = json.loads(json_stuff, cls=JsonDecimalDecoder)
+        elif isinstance(json_stuff, dict):
+            data = json_stuff
+        return cls(**data)

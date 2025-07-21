@@ -13,7 +13,7 @@
 """
 
 import json
-from employee import Employee, HourlyEmployee, PartTimeFaculty, SalaryEmployee
+from employee import HourlyEmployee, SalaryEmployee, PartTimeFaculty
 from json_decimal import JsonDecimalDecoder
 
 class JsonEmployeeEncoder(json.JSONEncoder):
@@ -27,7 +27,7 @@ class JsonEmployeeEncoder(json.JSONEncoder):
         return obj.__dict__
 
 class JsonEmployeeDecoder(json.JSONDecoder):
-    """ convert JSON to Employees """
+    """ convert JSON to Employee classes """
 
     def __init__(self, *args, **kwargs):
         """ initialize the class """
@@ -36,12 +36,9 @@ class JsonEmployeeDecoder(json.JSONDecoder):
     def object_hook(self, data):  # pylint: disable=E0202
         """ override the object_hook member fn """
         if '__PartTimeFaculty__' in data:
-            v = json.loads(data['value'], cls=JsonDecimalDecoder)
-            return PartTimeFaculty(**v)
+            return PartTimeFaculty.from_json(data['value'])
         if '__SalaryEmployee__' in data:
-            v = json.loads(data['value'], cls=JsonDecimalDecoder)
-            return SalaryEmployee(**v)
+            return SalaryEmployee.from_json(data['value'])
         if '__HourlyEmployee__' in data:
-            v = json.loads(data['value'], cls=JsonDecimalDecoder)
-            return HourlyEmployee(**v)
+            return HourlyEmployee.from_json(data['value'])
         return data

@@ -13,7 +13,7 @@
 """
 
 import json
-from employee import HourlyEmployee, SalaryEmployee, PartTimeFaculty
+from employee import HourlyEmployee, SalaryEmployee, PartTimeFaculty, Employee
 from json_decimal import JsonDecimalDecoder
 
 class JsonEmployeeEncoder(json.JSONEncoder):

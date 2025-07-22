@@ -43,6 +43,11 @@ class EmployeeManagement:
         return "EmployeeManagement"
 
     @classmethod
-    def from_json(cls, stuff):
+    def from_json(cls, json_stuff):
         """ from a json dict """
-        return cls(**stuff, cls=JsonEmployeeDecoder)
+        # pylint: disable=possibly-used-before-assignment
+        if isinstance(json_stuff, (bytes, bytearray, str)):
+            data = json.loads(json_stuff, cls=JsonEmployeeDecoder)
+        elif isinstance(json_stuff, dict):
+            data = json_stuff
+        return cls(**data)

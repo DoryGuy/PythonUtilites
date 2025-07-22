@@ -16,7 +16,7 @@
 
 import json
 
-from json_employee import JsonEmployeeDecoder, JsonEmployeeEncoder
+from json_employee import JsonEmployeeEncoder
 from management import EmployeeManagement
 
 def save_employees(employees: EmployeeManagement) -> None:
@@ -29,8 +29,7 @@ def get_employees() -> EmployeeManagement:
     employee_mgt: EmployeeManagement = EmployeeManagement()
     try:
         with open("employees/" + "employees.json", "r", encoding="utf-8") as emp_file:
-            emp_dict = json.loads(emp_file.read(), cls=JsonEmployeeDecoder)
-            return EmployeeManagement(**emp_dict)
+            return EmployeeManagement(emp_file.read()))
     except FileNotFoundError:
         pass
 

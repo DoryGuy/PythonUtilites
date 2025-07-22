@@ -49,7 +49,7 @@ class Employee:
     def from_json(cls, json_stuff):
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
-        if isinstance(json_stuff, str):
+        if isinstance(json_stuff, (bytes, bytearray, str)):
             data = json.loads(json_stuff, cls=JsonDecimalDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
@@ -73,7 +73,7 @@ class PartTimeFaculty(Employee):
     def from_json(cls, json_stuff):
         """ create a PartTimeFaculty from json """
         # pylint: disable=possibly-used-before-assignment
-        if isinstance(json_stuff, str):
+        if isinstance(json_stuff, (bytes, bytearray, str)):
             data = json.loads(json_stuff, cls=JsonDecimalDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
@@ -97,7 +97,7 @@ class SalaryEmployee(Employee):
     def from_json(cls, json_stuff):
         """ from a SalaryEmployee from json """
         # pylint: disable=possibly-used-before-assignment
-        if isinstance(json_stuff, str):
+        if isinstance(json_stuff, (bytes, bytearray, str)):
             data = json.loads(json_stuff, cls=JsonDecimalDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
@@ -122,7 +122,7 @@ class HourlyEmployee(Employee):
     def from_json(cls, json_stuff):
         """ create a Hourly Employee from a json"""
         # pylint: disable=possibly-used-before-assignment
-        if isinstance(json_stuff, str):
+        if isinstance(json_stuff, (bytes, bytearray, str)):
             data = json.loads(json_stuff, cls=JsonDecimalDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff

@@ -8,10 +8,8 @@ It is a good example of how to extend the JSON serialization and deserialization
 
 ### Example Usage
 ```python
-
-from decimal import Decimal
 import json
-
+from decimal import Decimal
 from json_decimal import JasonDecimalDecoder, JsonDecimalEncoder
 
 class TestData:
@@ -27,4 +25,11 @@ class TestData:
 
 ## example
 A simple example of how to create a json module to serialize and deserialize a class containing a custom class.
-field.
+field. it follows the examples in the official documentation for complex objects. If this is all you need, you can just
+stop reading here. But if you have more complex needs, read on, and checkout the decorators module, and the json
+extentsions module.
+
+## Conclusion
+The official documentation provides a good starting point for creating custom JSON encoders and decoders in Python, but
+I found it frustrating to use. I created these modules to help make it easier to work with custom classes and custom
+types. I hope you find them useful.

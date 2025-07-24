@@ -8,6 +8,7 @@ It is a good example of how to extend the JSON serialization and deserialization
 
 ### Example Usage
 ```python
+
 from decimal import Decimal
 import json
 

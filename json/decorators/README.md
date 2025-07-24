@@ -1,5 +1,4 @@
 # Custom JSON writing for Python Classes
-
 ### Overview
 This Python module provides a custom JSON encoder that allows you to serialize Python classes into JSON format. It is
 particularly useful for classes that contain non-serializable fields or require special handling during serialization.
@@ -31,7 +30,7 @@ class MyClass:
         elif isinstance(data, dict):
             data = data
         return cls(**data)
-```
+'''
 
 
 ## [class_holder.py](class_holder.py)

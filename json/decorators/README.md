@@ -31,6 +31,7 @@ class MyClass:
         elif isinstance(data, dict):
             data = data
         return cls(**data)
+```
 
 
 ## [class_holder.py](class_holder.py)

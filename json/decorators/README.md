@@ -11,7 +11,7 @@ encoder and decoder.
 
 ### Usage
 
-'''python
+```python
 from json_registry import json_class_registry
 
 @json_class_registry.register
@@ -30,7 +30,7 @@ class MyClass:
         elif isinstance(data, dict):
             data = data
         return cls(**data)
-'''
+```
 
 
 ## [class_holder.py](class_holder.py)

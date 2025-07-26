@@ -1,10 +1,11 @@
 # JSON  classes to encode Decimal into JSON
 
 ## [json_decimal.py](src/json_decimal.py)
-This module provides a custom JSON encoder and decoder for handling Python's `Decimal` type. It ensures that `Decimal`
+This module provides a simple custom JSON encoder and decoder for handling Python's `Decimal` type. It ensures that `Decimal`
 objects are serialized to JSON as string, and can be read back into `Decimal` objects from JSON strings.
 
-It is a good example of how to extend the JSON serialization and deserialization process in Python.
+It is an example of how to extend the JSON serialization and deserialization process in Python.
+However if you have more complex needs, ie multiple types, inherited classes etc, you might want to look into the `extensions` module.
 
 ### Example Usage
 ```python
@@ -25,7 +26,7 @@ class TestData:
 
 ## example
 A simple example of how to create a json module to serialize and deserialize a class containing a custom class.
-field. it follows the examples in the official documentation for complex objects. If this is all you need, you can just
+It follows the examples in the official documentation for complex objects. If this is all you need, you can just
 stop reading here. But if you have more complex needs, read on, and checkout the decorators module, and the json
 extentsions module.
 

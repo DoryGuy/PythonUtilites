@@ -41,10 +41,9 @@ class ExtendedJsonEncoder(json.JSONEncoder):
 class ExtendedJsonDecoder(json.JSONDecoder):
     """ convert JSON to classes and objects"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, args, **kwargs):
         """ initialize the class """
-        kwargs["object_hook"] = self.object_hook
-        super().__init__(**kwargs)
+        super().__init__(object_hook=self.object_hook, *args, **kwargs)
 
     def object_hook(self, obj):       # pylint: disable=E0202
         """ convert JSON objects to classes and objects """
@@ -56,7 +55,7 @@ class ExtendedJsonDecoder(json.JSONDecoder):
                 return decoder(obj)
 
             if name not in json_class_registry.classes:
-                raise ValueError(f"Class {name} is not registered in json_class_registry or custom_decoder.")
+                raise AttributeError(f"Class {name} is not registered in json_class_registry or custom_decoder.")
 
             c = json_class_registry.classes[name]
             if hasattr(c, 'from_json') and callable(c.from_json):

@@ -2,13 +2,10 @@
 # pylint: disable=line-too-long
 #
 """
-# Exercise No.   Hw12 Project 1
-# File Name:     save_accounts.py
 # Programmer:    Gary Powell
 # Date:          April 16, 2025
 #
 # Problem Statement: Customer encode and decode of Decimal
-#
 #
 # Overall Plan:
     Custom decoder to read and write Decimal values
@@ -23,7 +20,9 @@ class JsonDecimalEncoder(JSONEncoder):
         """ override the default """
         if isinstance(obj, Decimal):
             return { '__Decimal__': True, 'value': str(obj) }
-        return obj.__dict__   # happens to work for my use case.
+        if hasattr(obj, '__dict__'):
+            return obj.__dict__
+        return super().default(obj)
 
 class JsonDecimalDecoder(JSONDecoder):
     """ convert JSON Decimal to Decimal """
@@ -31,8 +30,8 @@ class JsonDecimalDecoder(JSONDecoder):
         """ initialize the class """
         super().__init__(object_hook=self.object_hook, *args, **kwargs)
 
-    def object_hook(self, data):  # pylint: disable=E0202
+    def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
-        if '__Decimal__' in data:
-            return Decimal(data['value'])
-        return data
+        if '__Decimal__' in obj:
+            return Decimal(obj['value'])
+        return obj

@@ -18,7 +18,7 @@ classes are responsible for the data structure and logic.
 Note: This example is not how to implement an employee classes, payscale type does not change the type of employee it is.
 Just an example of how to use the JSON Encoder and Decoder for a inheritance class.
 
-'''python
+```python
 from dataclasses import dataclass
 from decimal import Decimal 
 import json
@@ -63,11 +63,11 @@ class SalaryEmployee(Employee):
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
-'''
+```
 
 To handle the Decimal type we do the following:
 
-'''python
+```python
 from decimal import Decimal
 
 from json_extensions import ExtendedJsonEncoder, ExtendedJsonDecoder
@@ -79,7 +79,7 @@ class MyJsonEncoder(ExtendedJsonEncoder):
 class MyJsonDecoder(ExtendedJsonDecoder):
     def decode_Decimal(self, obj): # pylint: disable=invalid-name
         return Decimal(obj["value"])
-'''
+```
 
 This will read and write a list of employee JSON objects like this:
 
@@ -102,24 +102,33 @@ This will read and write a list of employee JSON objects like this:
 ```
 
 ## Conclusion
-This is by far the easiest and most flexible to encode data into JSON objects in Python. You can easily extend this to handle any
+This is by far the easiest and most flexible way to encode data into JSON objects in Python. You can easily extend this to handle any
 type without it becoming too cumbersome.  You may not need all this complexity, but it is a good example of how to use
 the python JSON module to handle custom classes and objects.
 
 ## Files
 
-### [class_holdeer.py](class_holder.py)
+### [class_holder.py](class_holder.py)
+The class that does the annotation of the classes to be collected
 
 ### [employee.py](employee.py)
+A group of employee classes that can be serialized to JSON
 
 ### [json_encoders_decoders.py](json_encoders_decoders.py)
+A custom JSON encoder and decoder that handles the serialization and deserialization of complex, Decimal and range objects.
 
 ### [json_extensions.py](json_extensions.py)
+A custom JSON encoder and decoder that handles the serialization and deserialization of classes registered with the
+`json_class_registry` and those in `json_encoders_decoders.py`.
 
 ### [json_register.py](json_register.py)
+A registry that holds the classes that can be serialized to JSON. It provides methods to register classes.
 
 ### [main.py](main.py)
+A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
 
 ### [management.py](management.py)
+A class to hold a dictionary of employees.
 
 ### [save_employees.py](save_employees.py)
+A couple of functions to save and load employees to and from a JSON file.

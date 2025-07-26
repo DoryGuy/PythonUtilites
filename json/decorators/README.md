@@ -64,7 +64,7 @@ A custom JSON encoder and decoder that handles the serialization and deserializa
 ## [json_decimal.py](json_decimal.py)
 A custom JSON encoder and decoder that handles the serialization and deserialization of Decimal objects.
 
-## [json_registry.py](json_registry.py)
+## [json_register.py](json_register.py)
 A registry that holds the classes that can be serialized to JSON. It provides methods to register classes.
 
 ## [main.py](main.py)

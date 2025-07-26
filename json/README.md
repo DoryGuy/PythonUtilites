@@ -8,14 +8,14 @@ class, and had a Decimal field.  My first attempt was pretty awful but it worked
 I have since found much better ways to do this, and I have written a few utilities that make it much easier to work with
 json in python for the future projects.
 
-## basic
+## [basic](basic)
 is just that, a basic json utility to write out a Decimal field in a class. There is a an example of how to use it, and
 a terrible way to also write the classes holding it. (A series of if statements to check the type of the field, one for 
 each class type that needs to be serialized, deserialized)
 
 This is the closest to the python documentation which nearly always uses `complex` as the example.
 
-## decorators
+## [decorators](decorators)
 Using a decorator to note the classes that need to be serialized, it separates the serialization and deserialization
 from the Json Encoder and Decoder.  This allows for a cleaner separation of concerns, and makes it easier to
 maintain. It also allows for easier expansion of the project in the future, as new classes can be added without breaking
@@ -30,7 +30,7 @@ Of course you still need to handle the unique fields within the class, and that'
 the class has to provide.  As you can see with classes with a lot of unique fields, this can get a bit ugly fast.
 In this example I reuse the basic version of the `json_decimal` for the decimal field.
 
-## extensions
+## [extensions](extensions)
 This is a more advanced version of the decorators, that allows for more complex serialization and deserialization of a
 class and types for which we do not control the source code. It relies on the use of `to_json` and `from_json` methods
 to serialize and deserialize the classes we write. 

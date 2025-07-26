@@ -42,11 +42,11 @@ class MyClass:
 ```
 
 ### Conclusion
-This implimentation is more complex, but it's more flexible and allows for a cleaner separation of concerns. And it
+This implementation is more complex, but it's more flexible and allows for a cleaner separation of concerns. And it
 makes the classes themselves easier to write and test.
 
-But we can do better, so checkout the extending json module section for a more advanced implimentation that handles
-mulitple types of objects within the classs such as Decimial, complex, datetime, and more.
+But we can do better, so checkout the extending json module section for a more advanced implementation that handles
+multiple types of objects within the class such as Decimal, complex, datetime, and more.
 
 
 ### src Files

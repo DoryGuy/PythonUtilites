@@ -30,6 +30,10 @@ It follows the examples in the official documentation for complex objects. If th
 stop reading here. But if you have more complex needs, read on, and checkout the decorators module, and the json
 extentsions module.
 
+The `example` module provides a simple class with a custom type, and shows how to serialize and deserialize it using
+the `src` module. It uses the `JsonDecimalEncoder` and `JasonDecimalDecoder` from the `json_decimal.py` code to handle
+the `Decimal` type.
+
 ## Conclusion
 The official documentation provides a good starting point for creating custom JSON encoders and decoders in Python, but
 I found it frustrating to use. I created these modules to help make it easier to work with custom classes and custom

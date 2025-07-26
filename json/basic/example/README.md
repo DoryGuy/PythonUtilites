@@ -65,3 +65,6 @@ https://docs.python.org/3/library/json.html
 
 Note: don't create your Employee classes this way. The Employee class should have a payroll object that can handle
 different types of employees. You aren't a different employee just because you change the way you are paid.
+
+Also checkout the `extentions` module for a more complete example of how to extend the JSONEncoder and JSONDecoder
+classes

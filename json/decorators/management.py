@@ -34,14 +34,6 @@ class EmployeeManagement:
                           indent=4,
                           cls=JsonCustomEncoder)
 
-    def __str__(self) -> str:
-        """ class name """
-        return "EmployeeManagement"
-
-    def __ref__(self) -> str:
-        """ class name """
-        return "EmployeeManagement"
-
     @classmethod
     def from_json(cls, json_stuff):
         """ from a json dict """

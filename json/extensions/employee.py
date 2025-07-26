@@ -42,10 +42,6 @@ class Employee:
         """ use the employee id for the hash """
         return int(self.employee_id)
 
-    def __ref__(self) -> str:
-        """ return name of the class """
-        return "Employee"
-
     @classmethod
     def from_json(cls, json_stuff):
         """ from a json dict """
@@ -66,10 +62,6 @@ class PartTimeFaculty(Employee):
         return json.dumps(self.__dict__,
                           sort_keys = True,
                           cls=MyJsonEncoder)
-
-    def __ref__(self) -> str:
-        """ return name of the class """
-        return "PartTimeFaculty"
 
     @classmethod
     def from_json(cls, json_stuff):
@@ -92,10 +84,6 @@ class SalaryEmployee(Employee):
                           sort_keys = True,
                           cls=MyJsonEncoder)
 
-    def __ref__(self) -> str:
-        """ return name of the class """
-        return "SalaryEmployee"
-
     @classmethod
     def from_json(cls, json_stuff):
         """ from a SalaryEmployee from json """
@@ -117,10 +105,6 @@ class HourlyEmployee(Employee):
         return json.dumps(self.__dict__,
                           sort_keys = True,
                           cls=MyJsonEncoder)
-
-    def __ref__(self) -> str:
-        """ return name of the class """
-        return "HourlyEmployee"
 
     @classmethod
     def from_json(cls, json_stuff):

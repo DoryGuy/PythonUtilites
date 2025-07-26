@@ -45,7 +45,7 @@ class JsonCustomDecoder(json.JSONDecoder):
         """ override the object_hook member fn """
         if '__ClassName__' in data:
             if data['__ClassName__'] not in json_class_registry.classes:
-                raise ValueError(f"Class {data['__ClassName__']} is not registered in json_class_registry.")
+                raise AttributeError(f"Class {data['__ClassName__']} is not registered in json_class_registry.")
 
             c = json_class_registry.classes[data['__ClassName__']]
             if hasattr(c, 'from_json') and callable(c.from_json):

@@ -106,29 +106,30 @@ This is by far the easiest and most flexible way to encode data into JSON object
 type without it becoming too cumbersome.  You may not need all this complexity, but it is a good example of how to use
 the python JSON module to handle custom classes and objects.
 
-## Files
+## src Files
 
-### [class_holder.py](class_holder.py)
+### [class_holder.py](src/class_holder.py)
 The class that does the annotation of the classes to be collected
 
-### [employee.py](employee.py)
-A group of employee classes that can be serialized to JSON
-
-### [json_encoders_decoders.py](json_encoders_decoders.py)
+### [json_encoders_decoders.py](src/json_encoders_decoders.py)
 A custom JSON encoder and decoder that handles the serialization and deserialization of complex, Decimal and range objects.
 
-### [json_extensions.py](json_extensions.py)
+### [json_extensions.py](src/json_extensions.py)
 A custom JSON encoder and decoder that handles the serialization and deserialization of classes registered with the
 `json_class_registry` and those in `json_encoders_decoders.py`.
 
-### [json_register.py](json_register.py)
+### [json_register.py](src/json_register.py)
 A registry that holds the classes that can be serialized to JSON. It provides methods to register classes.
 
-### [main.py](main.py)
+## example Files
+### [employee.py](example/employee.py)
+A group of employee classes that can be serialized to JSON
+
+### [main.py](example/main.py)
 A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
 
-### [management.py](management.py)
+### [management.py](example/management.py)
 A class to hold a dictionary of employees.
 
-### [save_employees.py](save_employees.py)
+### [save_employees.py](example/save_employees.py)
 A couple of functions to save and load employees to and from a JSON file.

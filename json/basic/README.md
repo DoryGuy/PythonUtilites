@@ -1,9 +1,5 @@
 # JSON  classes to encode Decimal into JSON
 
-## [json_decimal.py](src/json_decimal.py)
-This module provides a simple custom JSON encoder and decoder for handling Python's `Decimal` type. It ensures that `Decimal`
-objects are serialized to JSON as string, and can be read back into `Decimal` objects from JSON strings.
-
 It is an example of how to extend the JSON serialization and deserialization process in Python.
 However if you have more complex needs, ie multiple types, inherited classes etc, you might want to look into the `extensions` module.
 
@@ -38,3 +34,25 @@ the `Decimal` type.
 The official documentation provides a good starting point for creating custom JSON encoders and decoders in Python, but
 I found it frustrating to use. I created these modules to help make it easier to work with custom classes and custom
 types. I hope you find them useful.
+
+## src Files
+## [json_decimal.py](src/json_decimal.py)
+This module provides a simple custom JSON encoder and decoder for handling Python's `Decimal` type. It ensures that `Decimal`
+objects are serialized to JSON as string, and can be read back into `Decimal` objects from JSON strings.
+
+## example files
+### [employee.py](example/employee.py)
+A group of employee classes that can be serialized to JSON
+
+### [json_employee.py](example/json_employee.py)
+A custom JSON encoder and decoder for the employee classes, which uses the `JsonDecimalEncoder` and
+`JasonDecimalDecoder`
+
+### [main.py](example/main.py)
+A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
+
+### [management.py](example/management.py)
+A class to hold a dictionary of employees.
+
+### [save_employees.py](example/save_employees.py)
+A couple of functions to save and load employees to and from a JSON file.

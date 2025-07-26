@@ -16,7 +16,7 @@ import json
 from typing import Dict, Optional
 
 from employee import Employee
-from json_custom import JsonCustomEncoder, JsonCustomDecoder
+from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 
 class EmployeeManagement:
     """ Hold all the employees """
@@ -32,14 +32,14 @@ class EmployeeManagement:
         return json.dumps(self,
                           sort_keys = True,
                           indent=4,
-                          cls=JsonCustomEncoder)
+                          cls=MyJsonEncoder)
 
     @classmethod
     def from_json(cls, json_stuff):
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=JsonCustomDecoder)
+            data = json.loads(json_stuff, cls=MyJsonDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)

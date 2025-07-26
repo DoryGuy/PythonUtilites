@@ -2,7 +2,6 @@
 # pylint: disable=line-too-long
 #
 """
-# File: json_employee.py
 # Programmer: Gary Powell
 # Date: May 21, 2025
 #
@@ -15,7 +14,7 @@
 import json
 from employee import HourlyEmployee, SalaryEmployee, PartTimeFaculty, Employee
 
-class JsonEmployeeEncoder(json.JSONEncoder):
+class MyJsonEncoder(json.JSONEncoder):
     """ convert employee classes to JSON """
 
     def default(self,obj):      # pylint: disable=arguments-renamed
@@ -23,21 +22,24 @@ class JsonEmployeeEncoder(json.JSONEncoder):
         if isinstance(obj, Employee):
             if hasattr(obj, 'to_json') and callable(getattr(obj, 'to_json')):
                 return { "__" + obj.__class__.__name__ + "__": True, 'value': obj.to_json() }
-        return obj.__dict__
+        if hasattr(obj, '__dict__'):
+            # If the object has a __dict__ attribute, return it
+            return obj.__dict__
+        return super().default(obj)  # Call the default method of the parent class
 
-class JsonEmployeeDecoder(json.JSONDecoder):
+class MyJsonDecoder(json.JSONDecoder):
     """ convert JSON to Employee classes """
 
     def __init__(self, *args, **kwargs):
         """ initialize the class """
         super().__init__(object_hook=self.object_hook, *args, **kwargs)
 
-    def object_hook(self, data):  # pylint: disable=E0202
+    def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
-        if '__PartTimeFaculty__' in data:
-            return PartTimeFaculty.from_json(data['value'])
-        if '__SalaryEmployee__' in data:
-            return SalaryEmployee.from_json(data['value'])
-        if '__HourlyEmployee__' in data:
-            return HourlyEmployee.from_json(data['value'])
-        return data
+        if '__PartTimeFaculty__' in obj:
+            return PartTimeFaculty.from_json(obj['value'])
+        if '__SalaryEmployee__' in obj:
+            return SalaryEmployee.from_json(obj['value'])
+        if '__HourlyEmployee__' in obj:
+            return HourlyEmployee.from_json(obj['value'])
+        return obj

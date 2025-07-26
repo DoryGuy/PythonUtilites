@@ -19,7 +19,7 @@
 import json
 from json_register import json_class_registry
 
-class JsonCustomEncoder(json.JSONEncoder):
+class MyJsonEncoder(json.JSONEncoder):
     """ convert classes to JSON """
 
     def default(self,obj):      # pylint: disable=arguments-renamed
@@ -34,21 +34,21 @@ class JsonCustomEncoder(json.JSONEncoder):
 
         return super().default(obj)
 
-class JsonCustomDecoder(json.JSONDecoder):
+class MyJsonDecoder(json.JSONDecoder):
     """ convert JSON to classes """
 
     def __init__(self, *args, **kwargs):
         """ initialize the class """
         super().__init__(object_hook=self.object_hook, *args, **kwargs)
 
-    def object_hook(self, data):  # pylint: disable=E0202
+    def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
-        if '__ClassName__' in data:
-            if data['__ClassName__'] not in json_class_registry.classes:
-                raise AttributeError(f"Class {data['__ClassName__']} is not registered in json_class_registry.")
+        if '__ClassName__' in obj:
+            if obj['__ClassName__'] not in json_class_registry.classes:
+                raise AttributeError(f"Class {obj['__ClassName__']} is not registered in json_class_registry.")
 
-            c = json_class_registry.classes[data['__ClassName__']]
+            c = json_class_registry.classes[obj['__ClassName__']]
             if hasattr(c, 'from_json') and callable(c.from_json):
-                return c.from_json(data['value'])
-            raise AttributeError(f"Class {data['__ClassName__']} does not have a callable from_json method.")
-        return data
+                return c.from_json(obj['value'])
+            raise AttributeError(f"Class {obj['__ClassName__']} does not have a callable from_json method.")
+        return obj

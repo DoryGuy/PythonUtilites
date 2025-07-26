@@ -110,6 +110,7 @@ the python JSON module to handle custom classes and objects.
 
 ### [class_holder.py](../decorators/src/class_holder.py)
 Same file as from the decorators src.
+
 The class that does the annotation of the classes to be collected
 
 ### [json_encoders_decoders.py](src/json_encoders_decoders.py)
@@ -121,6 +122,7 @@ A custom JSON encoder and decoder that handles the serialization and deserializa
 
 ### [json_register.py](../decorators/src/json_register.py)
 Same file as from the decorators src.
+
 A registry that holds the classes that can be serialized to JSON. It provides methods to register classes.
 
 ## example Files
@@ -129,6 +131,7 @@ A group of employee classes that can be serialized to JSON
 
 ### [main.py](../basic/example/main.py)
 Same file as from the basic example
+
 A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
 
 ### [management.py](example/management.py)

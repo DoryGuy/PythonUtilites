@@ -58,9 +58,6 @@ The class that does the annotation of the classes to be collected
 A custom JSON encoder and decoder that handles the serialization and deserialization of classes registered with the
 `json_class_registry`.
 
-## [json_decimal.py](src/json_decimal.py)
-A custom JSON encoder and decoder that handles the serialization and deserialization of Decimal objects.
-
 ## [json_register.py](src/json_register.py)
 A registry that holds the classes that can be serialized to JSON. It provides methods to register classes.
 
@@ -69,11 +66,18 @@ A registry that holds the classes that can be serialized to JSON. It provides me
 ## [employee.py](example/employee.py)
 A group of employee classes that can be serialized to JSON
 
-## [main.py](example/main.py)
+## [json_decimal.py](../../basic/src/json_decimal.py)
+Same one from the basic src library
+A custom JSON encoder and decoder that handles the serialization and deserialization of Decimal objects.
+
+## [main.py](../../basic/example/main.py)
+Same one from the basic example
 A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
 
-## [management.py](example/management.py)
+## [management.py](../../basic/example/management.py)
+Same file as the basic example
 A class to hold a dictionary of employees.
 
-## [save_employee.py](example/save_employee.py)
+## [save_employee.py](../../basic/example/save_employee.py)
+Same file as the basic example
 A couple of functions to save and load employees to and from a JSON file.

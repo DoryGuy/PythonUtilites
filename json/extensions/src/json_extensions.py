@@ -41,7 +41,7 @@ class ExtendedJsonEncoder(json.JSONEncoder):
 class ExtendedJsonDecoder(json.JSONDecoder):
     """ convert JSON to classes and objects"""
 
-    def __init__(self, args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """ initialize the class """
         super().__init__(object_hook=self.object_hook, *args, **kwargs)
 

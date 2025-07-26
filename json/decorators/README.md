@@ -81,7 +81,7 @@ Same file as the basic example
 
 A class to hold a dictionary of employees.
 
-## [save_employee.py](../basic/example/save_employee.py)
+## [save_employees.py](../basic/example/save_employees.py)
 Same file as the basic example
 
 A couple of functions to save and load employees to and from a JSON file.

@@ -14,15 +14,13 @@
 #  other programs to access the employee data.
 """
 
-import json
 
-from json_encoders_decoders import MyJsonEncoder
 from management import EmployeeManagement
 
 def save_employees(employees: EmployeeManagement) -> None:
     """ save the data in the employee """
     with open("employees/" + "employees.json", "w", encoding="utf-8") as emp_file:
-        json.dump(employees, emp_file, sort_keys=True, indent=4, cls=MyJsonEncoder)
+        emp_file.write(employees.to_json())
 
 def get_employees() -> EmployeeManagement:
     """ read in the customer employee data """

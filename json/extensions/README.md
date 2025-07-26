@@ -134,8 +134,12 @@ Same file as from the basic example
 
 A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
 
-### [management.py](example/management.py)
+### [management.py](../basic/example/management.py)
+Same file as from basic example.
+
 A class to hold a dictionary of employees.
 
-### [save_employees.py](example/save_employees.py)
+### [save_employees.py](../basic/example/save_employees.py)
+Same file as from basic example.
+
 A couple of functions to save and load employees to and from a JSON file.

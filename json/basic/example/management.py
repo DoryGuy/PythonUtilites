@@ -29,7 +29,7 @@ class EmployeeManagement:
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self,
+        return json.dumps(self.__dict__,
                           sort_keys = True,
                           indent=4,
                           cls=MyJsonEncoder)

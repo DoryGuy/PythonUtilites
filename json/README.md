@@ -31,6 +31,12 @@ the class has to provide.  As you can see with classes with a lot of unique fiel
 In this example I reuse the basic version of the `json_decimal` for the decimal field.
 
 ## [extensions](extensions)
+This library came from a blog post here:
+https://mathspp.com/blog/custom-json-encoder-decoder
+I changed some of the underlying code because I don't like throwing exceptions when I could have tested for a thing.
+And I added my decorator code to the ExtendedJsonEncode/Decode functions. But the underlying concept for handling types
+where you do not have the source code comes from this blog by Rodrigo.
+
 This is a more advanced version of the decorators, that allows for more complex serialization and deserialization of a
 class and types for which we do not control the source code. It relies on the use of `to_json` and `from_json` methods
 to serialize and deserialize the classes we write. 

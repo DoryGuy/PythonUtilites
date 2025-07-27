@@ -43,13 +43,14 @@ to serialize and deserialize the classes we write.
 
 Then for the types for which we do not control the source code, we provide a custom encoder decoder that inherits from
 the base classes `ExtendedJsonEncoder`, and `ExtendedJsonDecoder`, and then add member functions to handle the types we want
-with the special name 'encode_<type>' and 'decode_<type>' where `<type>` is the name of the type we are dealing with.
-ie `encode_Decimal` and `decode_Decimal` for the Decimal type.
+with the special name `encode_<type>` and `decode_<type>` where `<type>` is the name of the type we are dealing with.
+ie `encode_Decimal` and `decode_Decimal` for the Decimal type, `encode_complex`, `decode_complex` etc.
 
-This looks complex and yet makes it easy to add modules to handle things like datetime, range, complex etc.
+The code in the library looks complex and yet makes it easy to add modules to handle things like datetime, range, complex etc.
+So that your code is easy to read and maintain.
 
 This is the most advanced version of the utilities, and is the one I use in my projects. It uses some fancy pants
-patterns from python so might not be the easiest to understand at first, but it is the most powerful and flexible and it's
+patterns from python ie. annotations, so might not be the easiest to understand at first, but it is the most powerful and flexible and it's
 the easiest to use.
 
-Just follow the examples in the examples directory, and you will see how to use it.
+Just follow the code in the examples directory, and you will see how to use it.

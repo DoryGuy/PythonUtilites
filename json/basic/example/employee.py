@@ -31,6 +31,7 @@ class Employee:
         """ dump to json """
         return json.dumps(self.__dict__,
                           sort_keys = True,
+                          indent = 4,
                           cls=JsonDecimalEncoder)
 
     def __eq__(self, other) -> bool:
@@ -59,6 +60,7 @@ class PartTimeFaculty(Employee):
         """ dump to json """
         return json.dumps(self.__dict__,
                           sort_keys = True,
+                          indent = 4,
                           cls=JsonDecimalEncoder)
 
     @classmethod
@@ -79,6 +81,7 @@ class SalaryEmployee(Employee):
         """ dump to json """
         return json.dumps(self.__dict__,
                           sort_keys = True,
+                          indent = 4,
                           cls=JsonDecimalEncoder)
 
     @classmethod
@@ -100,6 +103,7 @@ class HourlyEmployee(Employee):
         """ dump to json """
         return json.dumps(self.__dict__,
                           sort_keys = True,
+                          indent = 4,
                           cls=JsonDecimalEncoder)
 
     @classmethod

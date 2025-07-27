@@ -29,7 +29,7 @@ class Employee:
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self,
+        return json.dumps(self.__dict__,
                           sort_keys = True,
                           cls=JsonDecimalEncoder)
 
@@ -57,7 +57,7 @@ class PartTimeFaculty(Employee):
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self,
+        return json.dumps(self.__dict__,
                           sort_keys = True,
                           cls=JsonDecimalEncoder)
 
@@ -77,7 +77,7 @@ class SalaryEmployee(Employee):
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self,
+        return json.dumps(self.__dict__,
                           sort_keys = True,
                           cls=JsonDecimalEncoder)
 
@@ -98,7 +98,7 @@ class HourlyEmployee(Employee):
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self,
+        return json.dumps(self.__dict__,
                           sort_keys = True,
                           cls=JsonDecimalEncoder)
 

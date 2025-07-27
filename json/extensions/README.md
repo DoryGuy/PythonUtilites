@@ -87,18 +87,18 @@ This will read and write a list of employee JSON objects like this:
 "employees": {
 "1" : {
     "__extended_json_type__": "PartTimeFaculty",
-     "value": "{
-            \"employee_id\": \"12345\",
-            \"name\": \"John Doe\",
-            \"pay_scale\": { \"__extended_json_type__\": \"Decimal\", \"value\": \"5000.00\"}
-        }",
+     "value": {
+            "employee_id": "12345",
+            "name": "John Doe",
+            "pay_scale": { "__extended_json_type__": "Decimal", "value": "5000.00"}
+        },
 "2" : {
     "__extended_json_type__": "SalaryEmployee",
-     "value": "{
-            \"employee_id\": \"23456\",
-            \"name\": \"Jane Doe\",
-            \"pay_scale\": { \"__extended_json_type__\": \"Decimal\", \"value\": \"250000.00\"}
-        }"
+     "value": {
+            "employee_id": "23456",
+            "name": "Jane Doe",
+            "pay_scale": { "__extended_json_type__": "Decimal", "value": "250000.00"}
+        }
 ```
 
 ## Conclusion

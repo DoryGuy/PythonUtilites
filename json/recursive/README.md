@@ -62,6 +62,11 @@ Same one from the basic src library
 
 A custom JSON encoder and decoder that handles the serialization and deserialization of Decimal objects.
 
+## [json_encoders_decoders.py](../basic/example/json_encoders_decoders.py)
+Same one from the basic example library
+
+A custom encoder and decoder for the Employee classes.
+
 ## [main.py](../basic/example/main.py)
 Same one from the basic example
 

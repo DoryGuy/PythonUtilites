@@ -6,8 +6,7 @@
                 "first_name": "Gary",
                 "last_name": "Powell",
                 "pay_scale": {
-                    "__Decimal__": true,
-                    "value": "20.50"
+                    "__Decimal__": "20.50"
                     }
                 }
         },
@@ -17,8 +16,7 @@
                 "first_name": "Kevin",
                 "last_name": "Costner",
                 "pay_scale": {
-                    "__Decimal__": true,
-                    "value": "100000"
+                    "__Decimal__": "100000"
                     }
                 }
         },
@@ -28,8 +26,7 @@
                 "first_name": "Sarah",
                 "last_name": "Bagley",
                 "pay_scale": {
-                    "__Decimal__": true,
-                    "value": "25.00"
+                    "__Decimal__": "25.00"
                     }
                 }
         },
@@ -39,8 +36,7 @@
                 "first_name": "Sarah",
                 "last_name": "Smith",
                 "pay_scale": {
-                    "__Decimal__": true,
-                    "value": "7.50"
+                    "__Decimal__": "7.50"
                     }
                 }
         },
@@ -50,8 +46,7 @@
                 "first_name": "Dave",
                 "last_name": "Jones",
                 "pay_scale": {
-                    "__Decimal__": true,
-                    "value": "3000"
+                    "__Decimal__": "3000"
                     }
                 }
         }

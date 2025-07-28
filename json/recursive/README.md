@@ -20,6 +20,8 @@ def convert_to_json(obj):
 ### Usage
 
 ```python
+import json
+
 class Name:
     first: str = ""
     last: str = ""
@@ -42,8 +44,8 @@ class MyClass:
 ```
 
 ### Conclusion
-This technique can be combined with the other techniques like the decorator to make easy to maintain
-classes.
+This technique can be combined with the other techniques like the [decorator](../decorator) and the [extensions](../extensions) 
+to make easy to maintain classes that have complex data structures.
 
 ### src Files
 

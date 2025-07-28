@@ -44,7 +44,7 @@ class MyClass:
 ```
 
 ### Conclusion
-This technique can be combined with the other techniques like the [decorator](../decorator) and the [extensions](../extensions) 
+This technique can be combined with the other techniques like the [decorators](../decorators) and the [extensions](../extensions) 
 to make easy to maintain classes that have complex data structures.
 
 ### src Files

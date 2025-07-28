@@ -24,9 +24,9 @@ from name import Name
 @dataclass(kw_only=True)
 class Employee:
     """ Base Employee class """
-    employee_id: str = ""
+    employee_id: str
     name: Name = field(default_factory=lambda: Name())
-    pay_scale: Decimal = Decimal(0)
+    pay_scale: Decimal
 
     def to_json(self) -> str:
         """ dump to json """

@@ -23,10 +23,10 @@ from json_register import json_class_registry
 @dataclass(kw_only=True)
 class Employee:
     """ Base Employee class """
-    employee_id: str = ""
-    first_name: str = ""
-    last_name: str = ""
-    pay_scale: Decimal = Decimal(0)
+    employee_id: str
+    first_name: str
+    last_name: str
+    pay_scale: Decimal
 
     def to_json(self) -> str:
         """ dump to json """

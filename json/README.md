@@ -1,7 +1,8 @@
 # Json Utilies for Python
 
 ## Overview
-The python documentation is notoriously difficult to understand how to actually use the json module for anything but
+The python documentation [JSON encoder and decoder](https://docs.python.org/3/library/json.html) is 
+notoriously difficult to understand how to actually use the json module for anything but
 basic data or simple objects like complex. I ended up needing to use json to write a class that inherited from a base
 class, and had a Decimal field.  My first attempt was pretty awful but it worked well enough.
 

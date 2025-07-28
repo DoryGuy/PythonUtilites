@@ -16,7 +16,9 @@ import json
 from typing import Dict, Optional
 
 from employee import Employee
+from json_convert import convert_to_json
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
+
 
 class EmployeeManagement:
     """ Hold all the employees """
@@ -29,7 +31,7 @@ class EmployeeManagement:
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self.__dict__,
+        return json.dumps(convert_to_json(self),
                           sort_keys = True,
                           indent=4,
                           cls=MyJsonEncoder)

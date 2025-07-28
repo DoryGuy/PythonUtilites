@@ -25,8 +25,7 @@ class MyJsonEncoder(json.JSONEncoder):
     def default(self,obj):      # pylint: disable=arguments-renamed
         """ override the default """
         if hasattr(obj, '__class__') and obj.__class__.__name__ in json_class_registry.classes:
-            c = json_class_registry.classes[obj.__class__.__name__]
-            if hasattr(c, 'to_json') and callable(c.to_json):
+            if hasattr(obj, 'to_json') and callable(obj.to_json):
                 return {'__ClassName__': obj.__class__.__name__, 'value': obj.to_json()}
             raise AttributeError(f"Class {obj.__class__.__name__} does not have a callable to_json method.")
         if hasattr(obj, '__dict__'):

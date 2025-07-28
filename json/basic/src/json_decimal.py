@@ -19,7 +19,7 @@ class JsonDecimalEncoder(JSONEncoder):
     def default(self, obj):         # pylint: disable=arguments-renamed
         """ override the default """
         if isinstance(obj, Decimal):
-            return { '__Decimal__': True, 'value': str(obj) }
+            return { '__Decimal__': str(obj) }
         if hasattr(obj, '__dict__'):
             return obj.__dict__
         return super().default(obj)
@@ -33,5 +33,5 @@ class JsonDecimalDecoder(JSONDecoder):
     def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
         if '__Decimal__' in obj:
-            return Decimal(obj['value'])
+            return Decimal(obj['__Decimal__'])
         return obj

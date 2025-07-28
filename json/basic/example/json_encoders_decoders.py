@@ -21,7 +21,7 @@ class MyJsonEncoder(json.JSONEncoder):
         """ override the default """
         if isinstance(obj, Employee):
             if hasattr(obj, 'to_json') and callable(getattr(obj, 'to_json')):
-                return { "__" + obj.__class__.__name__ + "__": True, 'value': obj.to_json() }
+                return { "__" + obj.__class__.__name__ + "__": obj.to_json() }
         if hasattr(obj, '__dict__'):
             # If the object has a __dict__ attribute, return it
             return obj.__dict__
@@ -37,9 +37,9 @@ class MyJsonDecoder(json.JSONDecoder):
     def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
         if '__PartTimeFaculty__' in obj:
-            return PartTimeFaculty.from_json(obj['value'])
+            return PartTimeFaculty.from_json(obj['__PartTimeFaculty__'])
         if '__SalaryEmployee__' in obj:
-            return SalaryEmployee.from_json(obj['value'])
+            return SalaryEmployee.from_json(obj['__SalaryEmployee__'])
         if '__HourlyEmployee__' in obj:
-            return HourlyEmployee.from_json(obj['value'])
+            return HourlyEmployee.from_json(obj['__HourlyEmployee__'])
         return obj

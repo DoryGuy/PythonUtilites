@@ -1,0 +1,70 @@
+{
+    "employees": {
+        "1": {
+            "__HourlyEmployee__": {
+                "employee_id": 1,
+                "name": {
+                    "first": "Gary",
+                    "last": "Powell"
+                },
+                "pay_scale": {
+                    "__Decimal__": true,
+                    "value": "20.50"
+                    }
+                }
+        },
+        "2": {
+            "__SalaryEmployee__": {
+                "employee_id": 2,
+                "name": {
+                    "first": "Kevin",
+                    "last": "Costner"
+                },
+                "pay_scale": {
+                    "__Decimal__": true,
+                    "value": "100000"
+                    }
+                }
+        },
+        "3": {
+            "__HourlyEmployee__": {
+                "employee_id": 3,
+                "name": {
+                    "first": "Sarah",
+                    "last": "Bagley"
+                },
+                "pay_scale": {
+                    "__Decimal__": true,
+                    "value": "25.00"
+                    }
+                }
+        },
+        "4": {
+            "__HourlyEmployee__": {
+                "employee_id": 4,
+                "name": {
+                    "first": "Sarah",
+                    "last": "Smith"
+                },
+                "pay_scale": {
+                    "__Decimal__": true,
+                    "value": "7.50"
+                    }
+                }
+        },
+        "6": {
+            "__PartTimeFaculty__": {
+                "employee_id": "6",
+                "name": {
+                    "first": "Dave",
+                    "last": "Jones"
+                },
+                "pay_scale": {
+                    "__Decimal__": true,
+                    "value": "3000"
+                    }
+                }
+        }
+    },
+    "next_employee_id": 7
+}

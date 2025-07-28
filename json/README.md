@@ -8,6 +8,8 @@ class, and had a Decimal field.  My first attempt was pretty awful but it worked
 I have since found much better ways to do this, and I have written a few utilities that make it much easier to work with
 json in python for the future projects.
 
+As I find other ways of improving using python to read and write Json I'll update this resource.
+
 ## [basic](basic)
 is just that, a basic json utility to write out a Decimal field in a class. There is a an example of how to use it, and
 a terrible way to also write the classes holding it. (A series of if statements to check the type of the field, one for 
@@ -54,3 +56,11 @@ patterns from python ie. annotations, so might not be the easiest to understand 
 the easiest to use.
 
 Just follow the code in the examples directory, and you will see how to use it.
+
+## [recursive](recursive)
+This library is from this blog post:
+https://www.geeksforgeeks.org/python/python-to-generate-dynamic-nested-json-string
+
+It uses a simple recursive function to walk the data structure and thus handles lists and dictionaries.
+The example provided also uses the Decimal field to show how this technique can be combined with the
+basic technique to handle custom fields.

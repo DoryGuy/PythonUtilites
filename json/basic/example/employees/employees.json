@@ -1,8 +1,7 @@
 {
     "employees": {
         "1": {
-            "__HourlyEmployee__": true,
-            "value": {
+            "__HourlyEmployee__": {
                 "employee_id": 1,
                 "first_name": "Gary",
                 "last_name": "Powell",
@@ -13,8 +12,7 @@
                 }
         },
         "2": {
-            "__SalaryEmployee__": true,
-            "value": {
+            "__SalaryEmployee__": {
                 "employee_id": 2,
                 "first_name": "Kevin",
                 "last_name": "Costner",
@@ -25,8 +23,7 @@
                 }
         },
         "3": {
-            "__HourlyEmployee__": true,
-            "value": {
+            "__HourlyEmployee__": {
                 "employee_id": 3,
                 "first_name": "Sarah",
                 "last_name": "Bagley",
@@ -37,8 +34,7 @@
                 }
         },
         "4": {
-            "__HourlyEmployee__": true,
-            "value": {
+            "__HourlyEmployee__": {
                 "employee_id": 4,
                 "first_name": "Sarah",
                 "last_name": "Smith",
@@ -49,8 +45,7 @@
                 }
         },
         "6": {
-            "__PartTimeFaculty__": true,
-            "value": {
+            "__PartTimeFaculty__": {
                 "employee_id": "6",
                 "first_name": "Dave",
                 "last_name": "Jones",

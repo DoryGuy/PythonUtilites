@@ -13,7 +13,7 @@
 #    Create a class for Part time, Salary, and hourly
 #    employees.
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 import json
 from typing import List
@@ -28,11 +28,11 @@ from name import Name
 @dataclass(kw_only=True)
 class Employee:
     """ Base Employee class """
-    employee_id: str
-    name: Name
+    address: Address = field(default_factory=lambda: Address())
     contacts: List[Contact]
+    employee_id: str
+    name: Name = field(default_factory=lambda: Name())
     pay_scale: Decimal
-    address: Address
 
     def to_json(self) -> str:
         """ dump to json """

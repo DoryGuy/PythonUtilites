@@ -68,4 +68,7 @@ basic technique to handle custom fields.
 
 ## [complex_example](complex_example)
 Using a more complex employee class, I used the above techniques to create JSON read and writing
-functions. This uses the extensions library.
+functions. This uses the decorators, the extensions library, and the recursive library.
+There is a List of contacts, of which the Contact class has inheritence, an Address class which is a basic
+data structure, and a Name class also a basic data structure.  The Employee class uses the same inheritence
+as the basic example.

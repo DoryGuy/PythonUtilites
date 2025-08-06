@@ -54,7 +54,7 @@ multiple types of objects within the class such as Decimal, complex, datetime, a
 ## [class_holder.py](src/class_holder.py)
 The class that does the annotation of the classes to be collected
 
-## [json_custom.py](src/json_custom.py)
+## [json_encoders_decoders.py](src/json_encoders_decoders.py)
 A custom JSON encoder and decoder that handles the serialization and deserialization of classes registered with the
 `json_class_registry`.
 

@@ -44,8 +44,8 @@ objects are serialized to JSON as string, and can be read back into `Decimal` ob
 ### [employee.py](example/employee.py)
 A group of employee classes that can be serialized to JSON
 
-### [json_employee.py](example/json_employee.py)
-A custom JSON encoder and decoder for the employee classes, which uses the `JsonDecimalEncoder` and
+### [json_encoders_decoders.py](example/json_encoders_decoders.py)
+A custom JSON encoder and decoder for the employee classes, which use the `JsonDecimalEncoder` and
 `JasonDecimalDecoder`
 
 ### [main.py](example/main.py)

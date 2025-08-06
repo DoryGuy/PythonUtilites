@@ -13,12 +13,14 @@ from typing import List
 from json_convert import convert_to_json
 from json_register import json_class_registry
 
+@dataclass(kw_only=True)
 class Address:
     street: str = ""
     city: str = ""
     state: str = ""
     zip: str = ""
     
+@dataclass(kw_only=True)
 class Name:
     first: str = ""
     last: str = ""
@@ -88,6 +90,9 @@ class MyEmployeeClass:
             data = data
         return cls(**data)
 ```
+
+Note: The Address, and Name classes don't have to be registered or have custom "to_json" and "from_json" member
+functions because they are just data which is part of the JSON standard.
 
 ### Conclusion
 This technique is a combination of the other techniques used in the [decorators](../decorators) and the [extensions](../extensions)

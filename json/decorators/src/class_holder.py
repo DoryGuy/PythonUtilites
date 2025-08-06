@@ -12,17 +12,12 @@ class ClassHolder:
         ''' init '''
         self.classes = {}
 
-    def add_class(self, c):
-        ''' add a class to the holder '''
-        self.classes[c.__name__] = c
-
     # -- the decorator
     def register(self, c):
         ''' register a class with the holder '''
-        self.add_class(c)
+        self.classes[c.__name__] = c
 
-        # Decorators have to return the function/class passed (or a modified variant thereof), however I'd rather do this separately than retroactively change add_class, so.
-        # "held" is more succint, anyway.
+        # Decorators have to return the function/class passed (or a modified variant thereof)
         return c
 
     def __getitem__(self, n):

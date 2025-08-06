@@ -2,7 +2,7 @@
 # pylint: disable=line-too-long
 #
 """
-# File: json_custom.py
+# File: json_encoders_decoders.py
 # Programmer: Gary Powell
 # Date: July 20, 2025
 #

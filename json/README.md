@@ -65,3 +65,7 @@ https://www.geeksforgeeks.org/python/python-to-generate-dynamic-nested-json-stri
 It uses a simple recursive function to walk the data structure and thus handles lists and dictionaries.
 The example provided also uses the Decimal field to show how this technique can be combined with the
 basic technique to handle custom fields.
+
+## [complex_example](complex_example)
+Using a more complex employee class, I used the above techniques to create JSON read and writing
+functions. This uses the extensions library.

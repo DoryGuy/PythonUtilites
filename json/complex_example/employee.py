@@ -20,6 +20,7 @@ from typing import List
 
 from address import Address
 from contacts import Contact
+from json_convert import convert_to_json
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 from json_register import json_class_registry
 from name import Name
@@ -35,7 +36,7 @@ class Employee:
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self.__dict__,
+        return json.dumps(convert_to_json(self),
                           sort_keys = True,
                           cls=MyJsonEncoder)
 
@@ -64,7 +65,7 @@ class PartTimeFaculty(Employee):
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self.__dict__,
+        return json.dumps(convert_to_json(self),
                           sort_keys = True,
                           cls=MyJsonEncoder)
 
@@ -85,7 +86,7 @@ class SalaryEmployee(Employee):
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self.__dict__,
+        return json.dumps(convert_to_json(self),
                           sort_keys = True,
                           cls=MyJsonEncoder)
 
@@ -107,7 +108,7 @@ class HourlyEmployee(Employee):
 
     def to_json(self) -> str:
         """ dump to json """
-        return json.dumps(self.__dict__,
+        return json.dumps(convert_to_json(self),
                           sort_keys = True,
                           cls=MyJsonEncoder)
 

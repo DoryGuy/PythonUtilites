@@ -1,1 +1,1 @@
-../extensions/example/management.py
+../basic/example/management.py

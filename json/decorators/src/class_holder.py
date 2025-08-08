@@ -20,6 +20,8 @@ class ClassHolder:
         # Decorators have to return the function/class passed (or a modified variant thereof)
         return c
 
-    def __getitem__(self, n):
+    def __getitem__(self, name):
         ''' get a class by name '''
-        return self.classes[n]
+        if name not in self.classes:
+            raise KeyError(f"Name '{Name}' not found")
+        return self.classes[name]

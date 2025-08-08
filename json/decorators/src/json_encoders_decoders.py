@@ -43,11 +43,12 @@ class MyJsonDecoder(json.JSONDecoder):
     def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
         if '__ClassName__' in obj:
-            if obj['__ClassName__'] not in json_class_registry.classes:
+            try:
+                c = json_class_registry.classes[obj['__ClassName__']]
+                if hasattr(c, 'from_json') and callable(c.from_json):
+                    return c.from_json(obj['value'])
+                raise AttributeError(f"Class {obj['__ClassName__']} does not have a callable from_json method.")
+            except KeyError:
                 raise AttributeError(f"Class {obj['__ClassName__']} is not registered in json_class_registry.")
 
-            c = json_class_registry.classes[obj['__ClassName__']]
-            if hasattr(c, 'from_json') and callable(c.from_json):
-                return c.from_json(obj['value'])
-            raise AttributeError(f"Class {obj['__ClassName__']} does not have a callable from_json method.")
         return obj

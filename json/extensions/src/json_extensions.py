@@ -54,11 +54,11 @@ class ExtendedJsonDecoder(json.JSONDecoder):
                 decoder = getattr(self, decode_name)
                 return decoder(obj)
 
-            if name not in json_class_registry.classes:
+            try:
+                c = json_class_registry[name]
+                if hasattr(c, 'from_json') and callable(c.from_json):
+                    return c.from_json(obj['value'])
+                raise AttributeError(f"Class {name} does not have a callable from_json method.")
+            except KeyError:
                 raise AttributeError(f"Class {name} is not registered in json_class_registry or custom_decoder.")
-
-            c = json_class_registry.classes[name]
-            if hasattr(c, 'from_json') and callable(c.from_json):
-                return c.from_json(obj['value'])
-            raise AttributeError(f"Class {name} does not have a callable from_json method.")
         return obj

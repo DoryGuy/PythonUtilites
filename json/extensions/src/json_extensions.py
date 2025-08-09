@@ -1,3 +1,4 @@
+#pylint: disable=raise-missing-from
 '''
 https://mathspp.com/blog/custom-json-encoder-decoder
 with some minor modifications

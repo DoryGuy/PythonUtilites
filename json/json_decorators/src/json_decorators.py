@@ -1,5 +1,5 @@
  # pylint: disable=too-few-public-methods,invalid-name
-""" Class to add default from_json """
+""" Class to add default to_json and from_json """
 
 from  functools import partial
 import json
@@ -25,6 +25,11 @@ class json_decorator:
                           indent=4,
                           cls=encoder)
 
+    def add_to_json(self,cls,encoder) -> None:
+        """ add the to_json fn if it doesn't exist """
+        if not hasattr(cls,"to_json") and self.encoder is not None:
+            setattr(cls, "to_json", partial(self.to_json, encoder=encoder))
+
     def from_json(cls,json_stuff,*,decoder):
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
@@ -38,8 +43,3 @@ class json_decorator:
         """ add a static class member from_json """
         if not hasattr("from_json") and self.decoder is not None:
             setattr(cls, "from_json", classmethod(partial(self.from_json, decoder=decoder)))
-
-    def add_to_json(self,cls,encoder) -> None:
-        """ add the to_json fn if it doesn't exist """
-        if not hasattr(cls,"to_json") and self.encoder is not None:
-            setattr(cls, "to_json", partial(self.to_json, encoder=encoder))

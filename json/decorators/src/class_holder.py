@@ -23,5 +23,5 @@ class ClassHolder:
     def __getitem__(self, name):
         ''' get a class by name '''
         if name not in self.classes:
-            raise KeyError(f"Name '{Name}' not found")
+            raise KeyError(f"Name '{name}' not found")
         return self.classes[name]

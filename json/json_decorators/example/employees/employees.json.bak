@@ -1,0 +1,65 @@
+{
+    "employees": {
+        "1": {
+            "__extended_json_type__": "HourlyEmployee",
+            "value": {
+                "employee_id": 1,
+                "first_name": "Gary",
+                "last_name": "Powell",
+                "pay_scale": {
+                    "__extended_json_type__": "Decimal",
+                    "value": "20.50"
+                }
+            }
+        },
+        "2": {
+            "__extended_json_type__": "SalaryEmployee",
+            "value": {
+                "employee_id": 2,
+                "first_name": "Kevin",
+                "last_name": "Costner",
+                "pay_scale": {
+                    "__extended_json_type__": "Decimal",
+                    "value": "100000"
+                }
+            }
+        },
+        "3": {
+            "__extended_json_type__": "HourlyEmployee",
+            "value": {
+                "employee_id": 3,
+                "first_name": "Sarah",
+                "last_name": "Bagley",
+                "pay_scale": {
+                    "__extended_json_type__": "Decimal",
+                    "value": "25.00"
+                }
+            }
+        },
+        "4": {
+            "__extended_json_type__": "HourlyEmployee",
+            "value": {
+                "employee_id": 4,
+                "first_name": "Sarah",
+                "last_name": "Smith",
+                "pay_scale": {
+                    "__extended_json_type__": "Decimal",
+                    "value": "7.50"
+                }
+            }
+        },
+        "6": {
+            "__extended_json_type__": "PartTimeFaculty",
+            "value": {
+                "employee_id": "6",
+                "first_name": "Dave",
+                "last_name": "Jones",
+                "pay_scale": {
+                    "__extended_json_type__": "Decimal",
+                    "value": "3000"
+                }
+            }
+        }
+    },
+    "next_employee_id": 7
+}

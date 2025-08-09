@@ -1,1 +1,1 @@
-../../decorators/src/json_register.py
+../src/json_register.py

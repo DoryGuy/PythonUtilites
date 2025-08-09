@@ -1,1 +1,1 @@
-../../extensions/src/json_extensions.py
+../src/json_extensions.py

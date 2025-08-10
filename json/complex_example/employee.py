@@ -44,19 +44,19 @@ class Employee:
 
 @dataclass(kw_only=True)
 @json_class_registry.register
-@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder)
+@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder, indent=4, sort_keys=True)
 class PartTimeFaculty(Employee):
     """ Part time faculty """
 
 @dataclass(kw_only=True)
 @json_class_registry.register
-@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder)
+@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder, indent=4, sort_keys=True)
 class SalaryEmployee(Employee):
     """ Salary Employee """
 
 
 @dataclass(kw_only=True)
 @json_class_registry.register
-@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder)
+@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder, indent=4, sort_keys=True)
 class HourlyEmployee(Employee):
     """ Hourly Employee """

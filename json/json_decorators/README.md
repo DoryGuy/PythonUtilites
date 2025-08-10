@@ -1,6 +1,13 @@
 # Use a decorator to generate a default to_json and from_json member functions
 
 ## Overview
+I noticed that I was writing the same code over and over for the class member functions 'to_json', and 'from_json' with
+only the encoder and decoder names being different, and a lot of the times, they were the same. Rather than continue to
+cut and paste, I figured out how to pass arguments to a decorator class, and then generate on the fly the right
+'to_json' and 'from_json' methods. This moves the boiler plate code from the data classes to my new @json_decorator
+
+
+Yes it does obscure the implementation of these two member functions, but really, this stuff is boiler plate. And now it's all in one file.
 
 ## Usage
 Note: This example is not how to implement an employee classes, payscale type does not change the type of employee it is.
@@ -69,7 +76,8 @@ This will read and write a list of employee JSON objects like this:
 
 ## Conclusion
 While the use of this decorator hides the guts of writing to json and reading from json it removes
-some of the boilerplate coding necessary to read and write a class to Json.
+some of the boilerplate coding necessary to read and write a class to Json. After using it in the
+complex example I like it. I hope you do too.
 
 ## src Files
 ### [class_holder.py](../decorators/src/class_holder.py)

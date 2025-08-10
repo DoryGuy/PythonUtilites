@@ -1,4 +1,4 @@
-# pylint: disable=too-few-public-methods,invalid-name
+# pylint: disable=too-few-public-methods,invalid-name,line-too-long
 """ Class to add default to_json and from_json """
 
 from  functools import partial
@@ -7,10 +7,11 @@ from json_convert import convert_to_json
 
 class json_decorator:
     """ class to add default Json read and write. fns. """
-    def __init__(self, *, encoder = None, decoder = None) -> None:
+    def __init__(self, *, encoder = None, decoder = None, **kwargs) -> None:
         """ init the class """
         self.encoder = encoder
         self.decoder = decoder
+        self.kwargs = kwargs
 
     def __call__(self, cls):
         """ this method is called when the decorator is applied to the class
@@ -19,26 +20,25 @@ class json_decorator:
         self.add_to_json(cls, self.encoder)
         self.add_from_json(cls, self.decoder)
 
-    def to_json(self,*,encoder) -> str:
+    def to_json(self,*,encoder, **kwargs) -> str:
         """ dump to json """
         return json.dumps(convert_to_json(self),
-                          sort_keys = True,
-                          indent=4,
-                          cls=encoder)
+                          cls=encoder,
+                          **kwargs)
 
     def add_to_json(self,cls,encoder) -> None:
         """ add the to_json fn if it doesn't exist """
         if not hasattr(cls,"to_json"):
             if self.encoder is not None:
-                setattr(cls, "to_json", partial(self.to_json))
+                setattr(cls, "to_json", partial(self.to_json, encoder=encoder, kwargs=self.kwargs))
             else:
-                setattr(cls, "to_json", partial(self.to_json, encoder=encoder))
+                setattr(cls, "to_json", partial(self.to_json, kwargs=self.kwargs))
 
-    def from_json(cls,json_stuff,*,decoder):     # pylint: disable=no-self-argument
+    def from_json(cls,json_stuff,*,decoder, **kwargs):     # pylint: disable=no-self-argument
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=decoder)
+            data = json.loads(json_stuff, cls=decoder, **kwargs)
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
@@ -47,6 +47,6 @@ class json_decorator:
         """ add a static class member from_json """
         if not hasattr("from_json"):
             if self.decoder is not None:
-                setattr(cls, "from_json", classmethod(partial(self.from_json, decoder=decoder)))
+                setattr(cls, "from_json", classmethod(partial(self.from_json, decoder=decoder, kwargs=self.kwargs)))
             else:
-                setattr(cls, "from_json", classmethod(partial(self.from_json)))
+                setattr(cls, "from_json", classmethod(partial(self.from_json, kwargs=self.kwargs)))

@@ -1,1 +1,1 @@
-../basic/example/management.py
+../json_decorators/example/management.py

@@ -1,4 +1,4 @@
- # pylint: disable=too-few-public-methods,invalid-name
+# pylint: disable=too-few-public-methods,invalid-name
 """ Class to add default to_json and from_json """
 
 from  functools import partial
@@ -31,7 +31,7 @@ class json_decorator:
         if not hasattr(cls,"to_json") and self.encoder is not None:
             setattr(cls, "to_json", partial(self.to_json, encoder=encoder))
 
-    def from_json(cls,json_stuff,*,decoder):
+    def from_json(cls,json_stuff,*,decoder):     # pylint: disable=no-self-argument
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):

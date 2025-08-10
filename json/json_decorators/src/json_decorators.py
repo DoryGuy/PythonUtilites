@@ -3,6 +3,7 @@
 
 from  functools import partial
 import json
+from json_convert import convert_to_json
 
 class json_decorator:
     """ class to add default Json read and write. fns. """
@@ -20,7 +21,7 @@ class json_decorator:
 
     def to_json(self,*,encoder) -> str:
         """ dump to json """
-        return json.dumps(self.__dict__,
+        return json.dumps(convert_to_json(self),
                           sort_keys = True,
                           indent=4,
                           cls=encoder)

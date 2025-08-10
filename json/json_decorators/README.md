@@ -77,16 +77,16 @@ Same file as from the decorators src.
 
 The class that does the annotation of the classes to be collected
 
-### [json_decorator.py](src/json_decorator.py)
+### [json_decorators.py](src/json_decorators.py)
 A class which will generate if not defined and specified as
 an argument to the decorator the member function 'to_json' and a class method 'from_json'.
 
-### [json_encoders_decoders.py](src/json_encoders_decoders.py)
+### [json_encoders_decoders.py](../extensions/src/json_encoders_decoders.py)
 Same file as from the extension src.
 
 A custom JSON encoder and decoder that handles the serialization and deserialization of complex, Decimal and range objects.
 
-### [json_extensions.py](src/json_extensions.py)
+### [json_extensions.py](../extensions/src/json_extensions.py)
 Same file as from the extensions src.
 
 A custom JSON encoder and decoder that handles the serialization and deserialization of classes registered with the

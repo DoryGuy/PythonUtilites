@@ -68,6 +68,8 @@ This will read and write a list of employee JSON objects like this:
 ```
 
 ## Conclusion
+While the use of this decorator hides the guts of writing to json and reading from json it removes
+some of the boilerplate coding necessary to read and write a class to Json.
 
 ## src Files
 ### [class_holder.py](../decorators/src/class_holder.py)

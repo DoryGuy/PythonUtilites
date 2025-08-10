@@ -66,9 +66,14 @@ It uses a simple recursive function to walk the data structure and thus handles 
 The example provided also uses the Decimal field to show how this technique can be combined with the
 basic technique to handle custom fields.
 
+## [json_decorators](json_decorators)
+This library uses a decorator to generate a 'to_json' member function and a class method 'from_json' from the boiler
+plate code found in json_decorotors.  It's to help eliminate repetitive coding and thus reduce bugs.
+It relies on techniques from the decorators and the extensions libraries.
+
 ## [complex_example](complex_example)
 Using a more complex employee class, I used the above techniques to create JSON read and writing
-functions. This uses the decorators, the extensions library, and the recursive library.
+functions. This uses the decorators, the extensions library, json_decorators and the recursive library.
 There is a List of contacts, of which the Contact class has inheritence, an Address class which is a basic
 data structure, and a Name class also a basic data structure.  The Employee class uses the same inheritence
 as the basic example.

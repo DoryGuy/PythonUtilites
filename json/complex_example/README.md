@@ -7,10 +7,10 @@ objects which also inherit from a base class, and a Decimal field which is not p
 ### Usage
 ```python
 from dataclasses import dataclass, field
-import json
 from typing import List
 
-from json_convert import convert_to_json
+from json_decorators import json_decorator
+from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 from json_register import json_class_registry
 
 @dataclass(kw_only=True)
@@ -30,43 +30,19 @@ class Contact:
 
 @json_class_registry.register
 @dataclass(kw_only=True)
+@json_decorator()
 class Email(Contact):
     address: str = ""
 
-    def to_json(self) -> str:
-        """ dump to json """
-        return json.dumps(self.__dict__,sort_keys=True,indent=4)
-
-    @classmethod
-    def from_json(cls, json_stuff):
-        """ create a Phone Contact from json """
-        # pylint: disable=possibly-used-before-assignment
-        if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff)
-        elif isinstance(json_stuff, dict):
-            data = json_stuff
-        return cls(**data)
-
 @json_class_registry.register
 @dataclass(kw_only=True)
+@json_decorator()
 class Phone(Contact):
     type: str = ""
     number: str = ""
     
-    def to_json(self) -> str:
-        """ dump to json """
-        return json.dumps(self.__dict__,sort_keys=True,indent=4)
-
-    @classmethod
-    def from_json(cls, json_stuff):
-        """ create a Phone Contact from json """
-        # pylint: disable=possibly-used-before-assignment
-        if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff)
-        elif isinstance(json_stuff, dict):
-            data = json_stuff
-        return cls(**data)
-
+@dataclass(kw_only=True)
+@json_decorator(encoder=MyJsonEncoder, decoder=MyJsonDecoder)
 class MyEmployeeClass:
     name: Name = field(default_factory=lambda: Name())
     address: Address = field(default_factory=lambda: Address())
@@ -78,17 +54,6 @@ class MyEmployeeClass:
         self.address = address
         self.pay_scale = value
         self.contacts = contacts
-
-    def to_json(self):
-        return json.dumps(convert_to_json(self), sort_keys=True, indent=4)
-
-    @classmethod
-    def from_json(cls, data):
-        if isinstance(data, (bytes, bytearray, str)):
-            data = json.loads(data)
-        elif isinstance(data, dict):
-            data = data
-        return cls(**data)
 ```
 
 Note: The Address, and Name classes don't have to be registered or have custom "to_json" and "from_json" member
@@ -96,7 +61,7 @@ functions because they are just data which is part of the JSON standard.
 
 ### Conclusion
 This technique is a combination of the other techniques used in the [decorators](../decorators) and the [extensions](../extensions)
-and the [recursive](...recursive) to make easy to maintain classes that have complex data structures.
+and the [recursive](...recursive) and the [json_decorators](../json_decorators) to make easy to maintain classes that have complex data structures.
 
 ### Files
 

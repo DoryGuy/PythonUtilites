@@ -28,8 +28,11 @@ class json_decorator:
 
     def add_to_json(self,cls,encoder) -> None:
         """ add the to_json fn if it doesn't exist """
-        if not hasattr(cls,"to_json") and self.encoder is not None:
-            setattr(cls, "to_json", partial(self.to_json, encoder=encoder))
+        if not hasattr(cls,"to_json"):
+            if self.encoder is not None:
+                setattr(cls, "to_json", partial(self.to_json))
+            else:
+                setattr(cls, "to_json", partial(self.to_json, encoder=encoder))
 
     def from_json(cls,json_stuff,*,decoder):     # pylint: disable=no-self-argument
         """ from a json dict """
@@ -42,5 +45,8 @@ class json_decorator:
 
     def add_from_json(self, cls, decoder):
         """ add a static class member from_json """
-        if not hasattr("from_json") and self.decoder is not None:
-            setattr(cls, "from_json", classmethod(partial(self.from_json, decoder=decoder)))
+        if not hasattr("from_json"):
+            if self.decoder is not None:
+                setattr(cls, "from_json", classmethod(partial(self.from_json, decoder=decoder)))
+            else:
+                setattr(cls, "from_json", classmethod(partial(self.from_json)))

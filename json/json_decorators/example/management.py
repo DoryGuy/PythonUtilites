@@ -1,5 +1,5 @@
 #
-# pylint: disable=line-too-long
+# pylint: disable=line-too-long,too-few-public-methods
 #
 """
 # Exercise No.   Hw12 Project 1
@@ -12,14 +12,13 @@
 # Overall Plan:
 """
 
-import json
 from typing import Dict, Optional
 
 from employee import Employee
 from json_decorators import json_decorator
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 
-@json_decorators(decode=MyJsonDecoder, encoder=MyJsonEncoder, indent=4, sort_keys=True)
+@json_decorator(decode=MyJsonDecoder, encoder=MyJsonEncoder, indent=4, sort_keys=True)
 class EmployeeManagement:
     """ Hold all the employees """
     def __init__(self, *,next_employee_id:int = 1, employees: Optional[Dict[str, Employee]] = None) -> None: #

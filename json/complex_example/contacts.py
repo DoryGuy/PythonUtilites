@@ -5,7 +5,7 @@ A class to hold a contact. (demo)
 
 
 from dataclasses import dataclass
-from json_decorators import json_decortor
+from json_decorators import json_decorator
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 from json_register import json_class_registry
 

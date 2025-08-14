@@ -1,149 +1,162 @@
 {
     "employees": {
         "1": {
-            "__extended_json_type__": "HourlyEmployee",
+            "__extended_json_type__":"HourlyEmployee",
             "value": {
                 "address": {
-                    "city": "Smallville",
-                    "state": "KS",
-                    "street1": "1 Main St.",
-                    "street2": "",
-                    "zip": "12345-6789"
+                    "city":"Smallville",
+                    "state":"KS",
+                    "street1":"1 Main St.",
+                    "street2":"",
+                    "zip":"12345-6789"
                 },
                 "contacts": [
                     {
-                        "__extended_json_type__": "Email",
-                        "address": "DaveJones@aol.com"
+                        "__extended_json_type__":"Email",
+                        "value": {
+                            "address":"DaveJones@aol.com"
+                        }
                     }
                 ],
                 "employee_id": 1,
                 "name": {
-                    "first": "Gary",
-                    "last": "Powell"
+                    "first":"Gary",
+                    "last":"Powell"
                 },
                 "pay_scale": {
-                    "__extended_json_type__": "Decimal",
-                    "value": "20.50"
+                    "__extended_json_type__":"Decimal",
+                    "value":"20.50"
                 }
             }
         },
         "2": {
-            "__extended_json_type__": "SalaryEmployee",
+            "__extended_json_type__":"SalaryEmployee",
             "value": {
                 "address": {
-                    "city": "Smallville",
-                    "state": "CA",
-                    "street1": "2 Main St.",
-                    "street2": "",
-                    "zip": "12345-6789"
+                    "city":"Smallville",
+                    "state":"CA",
+                    "street1":"2 Main St.",
+                    "street2":"",
+                    "zip":"12345-6789"
                 },
                 "contacts": [
                     {
-                        "__extended_json_type__": "Phone",
-                        "number": "+17195551212",
-                        "type": "home"
+                        "__extended_json_type__":"Phone",
+                        "value": {
+                            "number":"+17195551212",
+                            "type":"home"
+                        }
                     }
                 ],
                 "employee_id": 2,
                 "name": {
-                    "first": "Kevin",
-                    "last": "Costner"
+                    "first":"Kevin",
+                    "last":"Costner"
                 },
                 "pay_scale": {
-                    "__extended_json_type__": "Decimal",
-                    "value": "100000"
+                    "__extended_json_type__":"Decimal",
+                    "value":"100000"
                 }
             }
         },
         "3": {
-            "__extended_json_type__": "HourlyEmployee",
+            "__extended_json_type__":"HourlyEmployee",
             "value": {
                 "address": {
-                    "city": "Smallville",
-                    "state": "WY",
-                    "street1": "3 Main St.",
-                    "street2": "",
-                    "zip": "12345-6789"
+                    "city":"Smallville",
+                    "state":"WY",
+                    "street1":"3 Main St.",
+                    "street2":"",
+                    "zip":"12345-6789"
                 },
                 "contacts": [
                     {
-                        "__extended_json_type__": "Phone",
-                        "number": "+17195550000",
-                        "type": "office"
+                        "__extended_json_type__":"Phone",
+                        "value" : {
+                            "number":"+17195550000",
+                            "type":"office"
+                        }
                     },
                     {
-                        "__extended_json_type__": "Phone",
-                        "number": "+17195553333",
-                        "type": "car"
+                        "__extended_json_type__":"Phone",
+                        "value" : {
+                            "number":"+17195553333",
+                            "type":"car"
+                        }
                     }
                 ],
                 "employee_id": 3,
                 "name": {
-                    "first": "Sarah",
-                    "last": "Bagley"
+                    "first":"Sarah",
+                    "last":"Bagley"
                 },
                 "pay_scale": {
-                    "__extended_json_type__": "Decimal",
-                    "value": "25.00"
+                    "__extended_json_type__":"Decimal",
+                    "value":"25.00"
                 }
             }
         },
         "4": {
-            "__extended_json_type__": "HourlyEmployee",
+            "__extended_json_type__":"HourlyEmployee",
             "value": {
                 "address": {
-                    "city": "Smallville",
-                    "state": "TX",
-                    "street1": "4 Main St.",
-                    "street2": "",
-                    "zip": "12345-6789"
+                    "city":"Smallville",
+                    "state":"TX",
+                    "street1":"4 Main St.",
+                    "street2":"",
+                    "zip":"12345-6789"
                 },
-                "contacts": [],
                 "employee_id": 4,
                 "name": {
-                    "first": "Sarah",
-                    "last": "Smith"
+                    "first":"Sarah",
+                    "last":"Smith"
                 },
                 "pay_scale": {
-                    "__extended_json_type__": "Decimal",
-                    "value": "7.50"
+                    "__extended_json_type__":"Decimal",
+                    "value":"7.50"
                 }
             }
         },
         "6": {
-            "__extended_json_type__": "PartTimeFaculty",
+            "__extended_json_type__":"PartTimeFaculty",
             "value": {
                 "address": {
-                    "city": "Smallville",
-                    "state": "AZ",
-                    "street1": "6 Main St.",
-                    "street2": "",
-                    "zip": "12345-6789"
+                    "city":"Smallville",
+                    "state":"AZ",
+                    "street1":"6 Main St.",
+                    "street2":"",
+                    "zip":"12345-6789"
                 },
                 "contacts": [
                     {
-                        "__extended_json_type__": "Email",
-                        "address": "DaveJones@aol.com"
+                        "__extended_json_type__":"Email",
+                        "value" : {
+                            "address":"DaveJones@aol.com"
+                        }
                     },
                     {
-                        "__extended_json_type__": "Phone",
-                        "number": "+17605551212",
-                        "type": "mobile"
+                        "__extended_json_type__":"Phone",
+                        "value" : {
+                            "number":"+17605551212",
+                            "type":"mobile"
+                        }
                     },
                     {
-                        "__extended_json_type__": "Phone",
-                        "number": "+17605552121",
-                        "type": "work"
+                        "__extended_json_type__":"Phone",
+                        "value": {
+                            "number":"+17605552121",
+                            "type":"work"
+                        }
                     }
                 ],
-                "employee_id": "6",
+                "employee_id":"6",
                 "name": {
-                    "first": "Dave",
-                    "last": "Jones"
+                    "first":"Dave",
+                    "last":"Jones"
                 },
                 "pay_scale": {
-                    "__extended_json_type__": "Decimal",
-                    "value": "3000"
+                    "__extended_json_type__":"Decimal",
+                    "value":"3000"
                 }
             }
         }

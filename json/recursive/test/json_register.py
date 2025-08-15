@@ -1,0 +1,1 @@
+../../decorators/src/json_register.py

@@ -85,7 +85,6 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
 
     def test_1(self) -> None:
         """ test with one Decimal """
-        return
         j_data = '{"__extended_json_type__":"MyContainer","value":{"y":{"__extended_json_type__":"MyClass","value":{"x": {"__extended_json_type": "Decimal","value": "13"}}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
         d_expected = Decimal(13)

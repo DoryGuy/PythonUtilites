@@ -4,6 +4,7 @@
 """ Unit test for decorators """
 
 import unittest
+from decimal import Decimal
 import json
 
 from dataclasses import dataclass
@@ -16,7 +17,7 @@ from json_register import json_class_registry
 @json_class_registry.register
 class MyClass():
     """ A test class """
-    x: int = int(13)
+    x: Decimal = Decimal(13)
 
     def to_json(self) -> str:
         """ dump to json """
@@ -65,14 +66,9 @@ class TestOneClassDecimal (unittest.TestCase):
     def test_1(self) -> None:
         """ test with one Decimal """
 
-        k = MyClass()
-        k_data = k.to_json()
-        print(k_data)
-
-        j_data = '{"__ClassName__":"MyClass","value":{"x":13}}'
+        j_data = '{"__ClassName__":"MyClass","value":{"x":{"__Decimal__": "13"}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = int(13)
-        return
+        d_expected = Decimal(13)
         assert d_expected == d.x
 
         d_j_data = d.to_json()
@@ -89,9 +85,9 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
         """ test with one Decimal """
         return
 
-        j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x":"13"}}}}'
+        j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x":"__Decimal__": "13"}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = int(13)
+        d_expected = Decimal(13)
         assert d_expected == d.y.x
 
         d_j_data = d.to_json()

@@ -4,7 +4,6 @@
 """ Unit test for decorators """
 
 import unittest
-from decimal import Decimal
 import json
 
 from dataclasses import dataclass
@@ -17,7 +16,8 @@ from json_register import json_class_registry
 @json_class_registry.register
 class MyClass():
     """ A test class """
-    x: Decimal = Decimal(13)
+    x: int = int(13)
+    y: int = int(6)
 
     def to_json(self) -> str:
         """ dump to json """
@@ -58,17 +58,17 @@ class MyContainer():
             data = json_stuff
         return cls(**data)
 
-class TestOneClassDecimal (unittest.TestCase):
+class TestOneClassInt (unittest.TestCase):
     """
     Unit Test class for one level
     """
 
     def test_1(self) -> None:
-        """ test with one Decimal """
+        """ test with one int """
 
-        j_data = '{"__ClassName__":"MyClass","value":{"x":{"__Decimal__": "13"}}}'
+        j_data = '{"__ClassName__":"MyClass","value":{"x":13, "y":6}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = Decimal(13)
+        d_expected = int(13)
         assert d_expected == d.x
 
         d_j_data = d.to_json()
@@ -76,18 +76,17 @@ class TestOneClassDecimal (unittest.TestCase):
         assert j_data == d_j_data
 
 
-class TestBasicDecoratorDecimal (unittest.TestCase):
+class TestBasicDecoratorInt (unittest.TestCase):
     """
     Unit Test class for basic encoder and decoder
     """
 
     def test_1(self) -> None:
-        """ test with one Decimal """
-        return
+        """ test with one class with one int """
 
-        j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x":"__Decimal__": "13"}}}}'
+        j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x":15,"y":16}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = Decimal(13)
+        d_expected = int(15)
         assert d_expected == d.y.x
 
         d_j_data = d.to_json()

@@ -38,6 +38,7 @@ class MyClass():
 @json_class_registry.register
 class MyContainer():
     """ test class """
+    #pylint: disable=unnecessary-lambda
     y: MyClass = field(default_factory=lambda: MyClass())
 
     def to_json(self) -> str:
@@ -81,7 +82,6 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
 
     def test_1(self) -> None:
         """ test with one Decimal """
-        return
 
         j_data = '{"__extended_json_type__":"MyContainer","value":{"y":{"__extended_json_type__":"MyClass","value":{"x":"13"}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)

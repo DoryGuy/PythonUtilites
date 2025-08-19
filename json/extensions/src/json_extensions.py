@@ -17,6 +17,11 @@ from json_register import json_class_registry
 
 class ExtendedJsonEncoder(json.JSONEncoder):
     """ convert objects and classes to JSON """
+    def __init__(self, *args, **kwargs):
+        """ initialize the class """
+        self.__prev_obj = None
+        super().__init__(*args, **kwargs)
+
     def default(self, obj):     # pylint: disable=arguments-renamed
         ''' convert objects and classes to JSON '''
         name = type(obj).__name__
@@ -30,10 +35,19 @@ class ExtendedJsonEncoder(json.JSONEncoder):
             return encoded
 
         if hasattr(obj, '__class__') and name in json_class_registry.classes:
-            c = json_class_registry.classes[name]
-            if hasattr(c, 'to_json') and callable(c.to_json):
-                return {'__extended_json_type__': name, 'value': obj.to_json()}
-            raise AttributeError(f"Class {name} does not have a callable to_json method.")
+            if self.__prev_obj is None:
+                self.__prev_obj = obj
+                if hasattr('obj', '__dict__'):
+                    return {'__extended_json_type__': name, 'value': obj.__dict__}
+                else:
+                    return {'__extended_json_type__': name, 'value': super().default(obj)}
+            else:
+                if hasattr(obj, 'to_json') and callable(obj.to_json):
+                    self.__prev_obj = None
+                    return {'__extended_json_type__': name, 'value': obj.to_json()}
+
+                raise AttributeError(f"Class {name} does not have a callable to_json method.")
+
         if hasattr(obj, '__dict__'):
            return obj.__dict__
 
@@ -44,6 +58,7 @@ class ExtendedJsonDecoder(json.JSONDecoder):
 
     def __init__(self, *args, **kwargs):
         """ initialize the class """
+        self.__prev_obj = None
         super().__init__(object_hook=self.object_hook, *args, **kwargs)
 
     def object_hook(self, obj):       # pylint: disable=E0202
@@ -58,6 +73,10 @@ class ExtendedJsonDecoder(json.JSONDecoder):
             try:
                 c = json_class_registry[name]
                 if hasattr(c, 'from_json') and callable(c.from_json):
+                    if self.__prev_obj is not None:
+                       self.__prev_obj = None
+                       return obj['value']
+                    self.__prev_obj = obj
                     return c.from_json(obj['value'])
                 raise AttributeError(f"Class {name} does not have a callable from_json method.")
             except KeyError:

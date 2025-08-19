@@ -19,6 +19,9 @@ class json_decorator:
 
         cls = self.add_to_json(cls)
         cls = self.add_from_json(cls)
+
+        assert hasattr(cls, 'to_json')
+        assert hasattr(cls, 'from_json')
         return cls
 
     def to_json_2(self,**kwargs) -> str:
@@ -32,7 +35,7 @@ class json_decorator:
                           cls=self.encoder,
                           **kwargs)
 
-    def add_to_json(self,cls) -> None:
+    def add_to_json(self,cls):
         """ add the to_json fn if it doesn't exist """
         if not hasattr(cls,"to_json"):
             if self.encoder is not None:
@@ -42,6 +45,7 @@ class json_decorator:
 
         return cls
 
+    @classmethod
     def from_json_2(cls,json_stuff):     # pylint: disable=no-self-argument
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
@@ -51,7 +55,8 @@ class json_decorator:
             data = json_stuff
         return cls(**data)
 
-    def from_json_3(cls,decoder, json_stuff):     # pylint: disable=no-self-argument
+    @classmethod
+    def from_json_3(cls,self, decoder, json_stuff):     # pylint: disable=no-self-argument
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):

@@ -20,8 +20,8 @@ class json_decorator:
         cls = self.add_to_json(cls)
         cls = self.add_from_json(cls)
 
-        assert hasattr(cls, 'to_json')
-        assert hasattr(cls, 'from_json')
+        #assert hasattr(cls, 'to_json')
+        #assert hasattr(cls, 'from_json')
         return cls
 
     def to_json_2(self,**kwargs) -> str:
@@ -39,13 +39,13 @@ class json_decorator:
         """ add the to_json fn if it doesn't exist """
         if not hasattr(cls,"to_json"):
             if self.encoder is not None:
-                setattr(cls, "to_json", partial(self.to_json_3, self.encoder, kwargs=self.kwargs))
+                #setattr(cls, "to_json", partial(self.to_json_3, self.encoder, kwargs=self.kwargs))
+                setattr(cls, "to_json", lambda x: self.to_json_3(x, self.encoder, kwargs=self.kwargs))
             else:
                 setattr(cls, "to_json", partial(self.to_json_2, kwargs=self.kwargs))
 
         return cls
 
-    @classmethod
     def from_json_2(cls,json_stuff):     # pylint: disable=no-self-argument
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
@@ -55,8 +55,7 @@ class json_decorator:
             data = json_stuff
         return cls(**data)
 
-    @classmethod
-    def from_json_3(cls,self, decoder, json_stuff):     # pylint: disable=no-self-argument
+    def from_json_3(cls, json_stuff, decoder):     # pylint: disable=no-self-argument
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
@@ -69,8 +68,10 @@ class json_decorator:
         """ add a static class member from_json """
         if not hasattr(cls, "from_json"):
             if self.decoder is not None:
-                setattr(cls, "from_json", classmethod(partial(self.from_json_3, self.decoder)))
+                #setattr(cls, "from_json", classmethod(partial(self.from_json_3, self.decoder)))
+                cls.from_json = classmethod(lambda cls, js: json_decorator.from_json_3(cls, js, self.decoder))
             else:
-                setattr(cls, "from_json", classmethod(self.from_json_2))
+                #setattr(cls, "from_json", classmethod(self.from_json_2))
+                cls.from_json =  classmethod(json_decorator.from_json_2)
 
         return cls

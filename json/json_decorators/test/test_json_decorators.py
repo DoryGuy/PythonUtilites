@@ -59,15 +59,15 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
     def test_1(self) -> None:
         """ test with one Decimal """
         j_data = '{"__extended_json_type__":"MyContainer","value":{"y":{"__extended_json_type__":"MyClass","value":{"x": {"__extended_json_type": "Decimal","value": "13"}}}}}'
-        d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = Decimal(13)
-
         x = MyContainer()
         assert hasattr(x, 'to_json')
         assert callable(getattr(x, 'to_json'))
 
-        #assert d_expected == d.y.x
+        x_data = x.to_json()
 
-        d_j_data = d.to_json()
+        assert j_data == x_data
 
-        assert j_data == d_j_data
+        d = json.loads(j_data,cls=MyJsonDecoder)
+        d_expected = Decimal(13)
+        assert d_expected == d.y.x
+

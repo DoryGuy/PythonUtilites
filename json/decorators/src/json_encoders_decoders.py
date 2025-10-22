@@ -28,19 +28,21 @@ class MyJsonEncoder(json.JSONEncoder):
 
     def default(self,obj):      # pylint: disable=arguments-renamed
         """ override the default """
+
         if hasattr(obj, '__class__') and obj.__class__.__name__ in json_class_registry.classes:
             if self.__prev_obj is None:
                 self.__prev_obj = obj
-                if hasattr('obj', '__dict__'):
+                if hasattr(obj,'items'):
+                    return {'__ClassName__': obj.__class__.__name__, 'value': obj.items()}
+                if hasattr(obj, '__dict__'):
                     return {'__ClassName__': obj.__class__.__name__, 'value': obj.__dict__}
-                else:
-                    return {'__ClassName__': obj.__class__.__name__, 'value': super().default(obj)}
-            else:
-                if hasattr(obj, 'to_json') and callable(obj.to_json):
-                    self.__prev_obj = None
-                    return {'__ClassName__': obj.__class__.__name__, 'value': obj.to_json()}
+                return {'__ClassName__': obj.__class__.__name__, 'value': 'UNKNOWN'}
 
-                raise AttributeError(f"Class {obj.__class__.__name__} does not have a callable to_json method.")
+            if hasattr(obj, 'to_json') and callable(obj.to_json):
+                self.__prev_obj = None
+                return {'__ClassName__': obj.__class__.__name__, 'value': obj.to_json()}
+
+            raise AttributeError(f"Class {obj.__class__.__name__} does not have a callable to_json method.")
 
         if hasattr(obj, '__dict__'):
             return obj.__dict__
@@ -63,10 +65,10 @@ class MyJsonDecoder(json.JSONDecoder):
                 c = json_class_registry.classes[obj['__ClassName__']]
                 if hasattr(c, 'from_json') and callable(c.from_json):
                     if self.__prev_obj is not None:
-                       self.__prev_obj = None
-                       return obj['value']
+                        self.__prev_obj = None
+                        return obj['value']
                     self.__prev_obj = obj
-                    return c.from_json(obj['value'])
+                    return (obj['value'])
                 raise AttributeError(f"Class {obj['__ClassName__']} does not have a callable from_json method.")
             except KeyError:
                 raise AttributeError(f"Class {obj['__ClassName__']} is not registered in json_class_registry.")

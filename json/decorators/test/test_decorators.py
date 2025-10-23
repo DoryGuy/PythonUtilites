@@ -72,7 +72,7 @@ class TestOneClassInt (unittest.TestCase):
     Unit Test class for one level
     """
 
-    def xtest_1(self) -> None:
+    def test_1(self) -> None:
         """ test with one int """
 
         j_data = '{"__ClassName__": "MyClass", "value": {"x": 13, "y": 6, "z": 11}}'
@@ -80,19 +80,16 @@ class TestOneClassInt (unittest.TestCase):
         d_expected = int(13)
         assert d_expected == d.x
 
-
         d_j_data = d.to_json()
 
-        assert j_data == d_j_data
+        assert (j_data == d_j_data)
 
     def test_2(self) -> None:
         """ test with create json """
 
         j_data = '{"__ClassName__": "MyClass", "value": {"x": 14, "y": 16, "z": 19}}'
         d = MyClass(14,16,19)
-
         j = d.to_json()
-        print(j)
 
         assert j_data == j
 
@@ -100,7 +97,7 @@ class TestOneClassInt (unittest.TestCase):
         d3 = MyClass.from_json(j)
         assert (d == d3 )
 
-    def xtest_3(self) -> None:
+    def test_3(self) -> None:
         """ test my container """
 
         d = MyContainer(45)
@@ -111,7 +108,7 @@ class TestBasicDecoratorInt (unittest.TestCase):
     Unit Test class for basic encoder and decoder
     """
 
-    def xtest_1(self) -> None:
+    def test_1(self) -> None:
         """ test with one class with two ints """
 
         j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x": 15,"y": 16,"z": 17}}}}'

@@ -68,7 +68,7 @@ class MyJsonDecoder(json.JSONDecoder):
                         self.__prev_obj = None
                         return obj['value']
                     self.__prev_obj = obj
-                    return (obj['value'])
+                    return c.from_json(obj['value'])
                 raise AttributeError(f"Class {obj['__ClassName__']} does not have a callable from_json method.")
             except KeyError:
                 raise AttributeError(f"Class {obj['__ClassName__']} is not registered in json_class_registry.")

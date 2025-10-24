@@ -6,7 +6,8 @@
 import unittest
 import json
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from multiprocessing.connection import default_family
 
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 from json_register import json_class_registry
@@ -47,8 +48,9 @@ class MyClass():
 @json_class_registry.register
 class MyContainer():
     """ test class """
+    y :MyClass = field(default_factory=lambda: MyClass())
 
-    def __init__(self, y) -> None:
+    def __init__(self,y: MyClass) -> None:
         self.y = y
 
     def to_json(self) -> str:
@@ -62,8 +64,8 @@ class MyContainer():
         """ from a json dict MyContainer """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=MyJsonDecoder)
-        elif isinstance(json_stuff, dict):
+            return json.loads(json_stuff, cls=MyJsonDecoder)
+        if isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
 
@@ -112,13 +114,15 @@ class TestBasicDecoratorInt (unittest.TestCase):
         """ test with one class with two ints """
 
         j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x": 15,"y": 16,"z": 17}}}}'
-        d = json.loads(j_data,cls=MyJsonDecoder)
+        #d = json.loads(j_data,cls=MyJsonDecoder)
+        d2 = MyContainer.from_json(j_data)
         d_expected_x = int(15)
-        assert d_expected_x == d.y.x
+        assert d_expected_x == d2.y.x
+        #assert d_expected_x == d.y.x
         d_expected_z = int(17)
-        assert d_expected_z == d.y.z
+        #assert d_expected_z == d.y.z
 
-        d_j_data = d.to_json()
+        d_j_data = d2.to_json()
 
         assert j_data == d_j_data
 

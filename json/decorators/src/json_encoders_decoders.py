@@ -64,10 +64,6 @@ class MyJsonDecoder(json.JSONDecoder):
             try:
                 c = json_class_registry.classes[obj['__ClassName__']]
                 if hasattr(c, 'from_json') and callable(c.from_json):
-                    if self.__prev_obj is not None:
-                        self.__prev_obj = None
-                        return obj['value']
-                    self.__prev_obj = obj
                     return c.from_json(obj['value'])
                 raise AttributeError(f"Class {obj['__ClassName__']} does not have a callable from_json method.")
             except KeyError:

@@ -101,9 +101,12 @@ class TestOneClassInt (unittest.TestCase):
 
     def test_3(self) -> None:
         """ test my container """
+        mc = MyClass(2,3,4)
+        d = MyContainer(mc)
 
-        d = MyContainer(45)
-
+        data_j = d.to_json()
+        j_data = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 2, "y": 3, "z": 4}}}}'
+        assert data_j == j_data
 
 class TestBasicDecoratorInt (unittest.TestCase):
     """
@@ -113,7 +116,7 @@ class TestBasicDecoratorInt (unittest.TestCase):
     def test_1(self) -> None:
         """ test with one class with two ints """
 
-        j_data = '{"__ClassName__":"MyContainer","value":{"y":{"__ClassName__":"MyClass","value":{"x": 15,"y": 16,"z": 17}}}}'
+        j_data = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 15, "y": 16, "z": 17}}}}'
         #d = json.loads(j_data,cls=MyJsonDecoder)
         d2 = MyContainer.from_json(j_data)
         d_expected_x = int(15)

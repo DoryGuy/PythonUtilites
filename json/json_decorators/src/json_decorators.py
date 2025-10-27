@@ -40,7 +40,7 @@ class json_decorator:
         if not hasattr(cls,"to_json"):
             if self.encoder is not None:
                 #setattr(cls, "to_json", partial(self.to_json_3, self.encoder, kwargs=self.kwargs))
-                setattr(cls, "to_json", lambda x: self.to_json_3(x, self.encoder, kwargs=self.kwargs))
+                setattr(cls, "to_json", lambda x: self.to_json_3(self.encoder, kwargs=self.kwargs))
             else:
                 setattr(cls, "to_json", partial(self.to_json_2, kwargs=self.kwargs))
 

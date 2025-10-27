@@ -1,1 +1,0 @@
-../src/json_register.py

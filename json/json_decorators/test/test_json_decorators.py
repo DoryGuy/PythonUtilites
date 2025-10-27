@@ -70,4 +70,3 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
         d = json.loads(j_data,cls=MyJsonDecoder)
         d_expected = Decimal(13)
         assert d_expected == d.y.x
-

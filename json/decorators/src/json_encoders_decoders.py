@@ -21,6 +21,9 @@ from json_register import json_class_registry
 
 class MyJsonEncoder(json.JSONEncoder):
     """ convert classes to JSON """
+    def __init__(self, *args, **kwargs):
+        """ initialize the class """
+        super().__init__(*args, **kwargs)
 
     def default(self,obj):      # pylint: disable=arguments-renamed
         """ override the default """
@@ -44,11 +47,15 @@ class MyJsonEncoder(json.JSONEncoder):
 class MyJsonDecoder(json.JSONDecoder):
     """ convert JSON to classes """
 
+    def __init__(self, *args, **kwargs):
+        """ initialize the class """
+        super().__init__(object_hook=self.object_hook, *args, **kwargs)
+
     def object_hook(self, obj):  # pylint: disable=E0202
         """ override the object_hook member fn """
         if '__ClassName__' in obj:
             try:
-                name = obj['__className__']
+                name = obj['__ClassName__']
                 c = json_class_registry.classes[name]
                 if hasattr(c, 'from_json') and callable(c.from_json):
                     return c.from_json(obj['value'])

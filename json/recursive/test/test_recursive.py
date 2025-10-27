@@ -9,9 +9,9 @@ from decimal import Decimal
 import json
 
 
+from json_register import json_class_registry
 from json_convert import convert_to_json
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
-from json_register import json_class_registry
 
 
 @dataclass(kw_only=True)

@@ -68,7 +68,7 @@ class TestOneClassDecimal (unittest.TestCase):
     def test_1(self) -> None:
         """ test with one Decimal """
 
-        j_data = '{"__extended_json_type__":"MyClass","value":{"x": {"__extended_json_type__": "Decimal","value": "13"}}}'
+        j_data = '{"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal", "value": "13"}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
         d_expected = MyClass()
         assert d_expected == d
@@ -85,7 +85,7 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
 
     def test_1(self) -> None:
         """ test with one Decimal """
-        j_data = '{"__extended_json_type__":"MyContainer","value":{"y":{"__extended_json_type__":"MyClass","value":{"x": {"__extended_json_type": "Decimal","value": "13"}}}}}'
+        j_data = '{"__extended_json_type__": "MyContainer", "value": {"y": {"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal", "value": "13"}}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
         d_expected = Decimal(13)
         assert d_expected == d.y.x

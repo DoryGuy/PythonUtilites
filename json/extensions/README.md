@@ -43,7 +43,7 @@ class PartTimeFaculty(Employee):
     def from_json(cls, json_stuff):
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=MyJsonDecoder)
+            return json.loads(json_stuff, cls=MyJsonDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
@@ -60,7 +60,7 @@ class SalaryEmployee(Employee):
     def from_json(cls, json_stuff):
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=MyJsonDecoder)
+            return json.loads(json_stuff, cls=MyJsonDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)

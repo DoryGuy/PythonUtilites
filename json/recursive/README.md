@@ -37,7 +37,7 @@ class MyClass:
     @classmethod
     def from_json(cls, data):
         if isinstance(data, (bytes, bytearray, str)):
-            data = json.loads(data)
+            return json.loads(data)
         elif isinstance(data, dict):
             data = data
         return cls(**data)

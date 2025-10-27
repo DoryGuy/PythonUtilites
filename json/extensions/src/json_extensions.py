@@ -19,7 +19,6 @@ class ExtendedJsonEncoder(json.JSONEncoder):
     """ convert objects and classes to JSON """
     def __init__(self, *args, **kwargs):
         """ initialize the class """
-        self.__prev_obj = None
         super().__init__(*args, **kwargs)
 
     def default(self, obj):     # pylint: disable=arguments-renamed
@@ -54,7 +53,6 @@ class ExtendedJsonDecoder(json.JSONDecoder):
 
     def __init__(self, *args, **kwargs):
         """ initialize the class """
-        self.__prev_obj = None
         super().__init__(object_hook=self.object_hook, *args, **kwargs)
 
     def object_hook(self, obj):       # pylint: disable=E0202

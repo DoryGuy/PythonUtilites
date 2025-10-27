@@ -35,7 +35,7 @@ class MyClass:
     @classmethod
     def from_json(cls, data):
         if isinstance(data, (bytes, bytearray, str)):
-            data = json.loads(data, cls=JsonCustomDecoder)
+            return json.loads(data, cls=JsonCustomDecoder)
         elif isinstance(data, dict):
             data = data
         return cls(**data)

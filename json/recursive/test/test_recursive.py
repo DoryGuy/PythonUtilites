@@ -32,7 +32,7 @@ class MyClass():
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=MyJsonDecoder)
+            return json.loads(json_stuff, cls=MyJsonDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
@@ -55,7 +55,7 @@ class MyContainer():
         """ from a json dict """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            data = json.loads(json_stuff, cls=MyJsonDecoder)
+            return json.loads(json_stuff, cls=MyJsonDecoder)
         elif isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)

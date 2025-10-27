@@ -7,7 +7,6 @@ import unittest
 import json
 
 from dataclasses import dataclass, field
-from multiprocessing.connection import default_family
 
 from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 from json_register import json_class_registry
@@ -84,7 +83,7 @@ class TestOneClassInt (unittest.TestCase):
 
         d_j_data = d.to_json()
 
-        assert (j_data == d_j_data)
+        assert j_data == d_j_data
 
     def test_2(self) -> None:
         """ test with create json """
@@ -97,7 +96,7 @@ class TestOneClassInt (unittest.TestCase):
 
         d2 = MyClass.from_json(j_data)
         d3 = MyClass.from_json(j)
-        assert (d == d3 )
+        assert d == d3
 
     def test_3(self) -> None:
         """ test my container """

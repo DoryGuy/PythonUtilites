@@ -1,5 +1,5 @@
 """
-Using Recursive Functions travers the object.
+Using Recursive Functions traverse the object.
 """
 
 def convert_to_json(obj):

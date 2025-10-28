@@ -21,7 +21,7 @@ from json_encoders_decoders import MyJsonEncoder, MyJsonDecoder
 @json_decorator(decoder=MyJsonDecoder, encoder=MyJsonEncoder, indent=4, sort_keys=True)
 class EmployeeManagement:
     """ Hold all the employees """
-    def __init__(self, *,next_employee_id:int = 1, employees: Optional[Dict[str, Employee]] = None) -> None: #
+    def __init__(self, *,next_employee_id:int = 1, employees: Optional[Dict[str, Employee]] = None) -> None:
         """ initialize the class """
         if employees is None:
             employees = {}

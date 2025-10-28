@@ -1,54 +1,19 @@
 {
     "employees": {
         "1": {
-            "__HourlyEmployee__": {
-                "employee_id": 1,
-                "first_name": "Gary",
-                "last_name": "Powell",
-                "pay_scale": {
-                    "__Decimal__": "20.50"
-                    }
-                }
+            "__HourlyEmployee__": "{\n    \"employee_id\": 1,\n    \"first_name\": \"Gary\",\n    \"last_name\": \"Powell\",\n    \"pay_scale\": {\n        \"__Decimal__\": \"20.50\"\n    }\n}"
         },
         "2": {
-            "__SalaryEmployee__": {
-                "employee_id": 2,
-                "first_name": "Kevin",
-                "last_name": "Costner",
-                "pay_scale": {
-                    "__Decimal__": "100000"
-                    }
-                }
+            "__SalaryEmployee__": "{\n    \"employee_id\": 2,\n    \"first_name\": \"Kevin\",\n    \"last_name\": \"Costner\",\n    \"pay_scale\": {\n        \"__Decimal__\": \"100000\"\n    }\n}"
         },
         "3": {
-            "__HourlyEmployee__": {
-                "employee_id": 3,
-                "first_name": "Sarah",
-                "last_name": "Bagley",
-                "pay_scale": {
-                    "__Decimal__": "25.00"
-                    }
-                }
+            "__HourlyEmployee__": "{\n    \"employee_id\": 3,\n    \"first_name\": \"Sarah\",\n    \"last_name\": \"Bagley\",\n    \"pay_scale\": {\n        \"__Decimal__\": \"25.00\"\n    }\n}"
         },
         "4": {
-            "__HourlyEmployee__": {
-                "employee_id": 4,
-                "first_name": "Sarah",
-                "last_name": "Smith",
-                "pay_scale": {
-                    "__Decimal__": "7.50"
-                    }
-                }
+            "__HourlyEmployee__": "{\n    \"employee_id\": 4,\n    \"first_name\": \"Sarah\",\n    \"last_name\": \"Smith\",\n    \"pay_scale\": {\n        \"__Decimal__\": \"7.50\"\n    }\n}"
         },
         "6": {
-            "__PartTimeFaculty__": {
-                "employee_id": "6",
-                "first_name": "Dave",
-                "last_name": "Jones",
-                "pay_scale": {
-                    "__Decimal__": "3000"
-                    }
-                }
+            "__PartTimeFaculty__": "{\n    \"employee_id\": \"6\",\n    \"first_name\": \"Dave\",\n    \"last_name\": \"Jones\",\n    \"pay_scale\": {\n        \"__Decimal__\": \"3000\"\n    }\n}"
         }
     },
     "next_employee_id": 7

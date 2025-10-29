@@ -28,7 +28,7 @@ class MyClass():
 class MyContainer():
     """ test container class """
     #pylint: disable=unnecessary-lambda
-    y: MyClass = field(default_factory=lambda: MyClass())
+    y: MyClass = field(default_factory=lambda: MyClass(Decimal(14)))
 
 class TestOneClassDecimal (unittest.TestCase):
     """
@@ -62,21 +62,19 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
     Unit Test class for basic encoder and decoder
     """
 
-    def xtest_1(self) -> None:
+    def test_1(self) -> None:
         """ test with one Decimal """
         j_data = '{"__extended_json_type__": "MyContainer", "value": {"y": {"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal","value": "15"}}}}}'
-        x = MyContainer(Decimal(15))
-        assert hasattr(x, 'to_json')
-        assert callable(getattr(x, 'to_json'))
-
-        assert hasattr(x, 'from_json')
-        assert callable(getattr(x, 'from_json'))
-
-
-        x_data = x.to_json()
-
-        assert j_data == x_data
-
         d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = Decimal(13)
+        assert hasattr(d, 'to_json')
+        assert callable(getattr(d, 'to_json'))
+
+        assert hasattr(d, 'from_json')
+        assert callable(getattr(d, 'from_json'))
+
+        d_expected = Decimal(15)
         assert d_expected == d.y.x
+
+        d_data = d.to_json()
+
+        assert j_data == d_data

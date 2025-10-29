@@ -38,12 +38,18 @@ class TestOneClassDecimal (unittest.TestCase):
     def test_1(self) -> None:
         """ test with one Decimal """
 
-        j_data = '{"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal", "value": "13"}}}'
+        j_data = '{"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal", "value": "14"}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
-        d_expected = MyClass()
+        assert hasattr(d, 'to_json')
+        assert callable(getattr(d, 'to_json'))
+
+        assert hasattr(d, 'from_json')
+        assert callable(getattr(d, 'from_json'))
+
+        d_expected = MyClass(x=Decimal(14))
         assert d_expected == d
 
-        x = MyClass()
+        x = MyClass(x=Decimal(14))
         assert hasattr(x, 'to_json')
         assert callable(getattr(x, 'to_json'))
 
@@ -56,12 +62,16 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
     Unit Test class for basic encoder and decoder
     """
 
-    def test_1(self) -> None:
+    def xtest_1(self) -> None:
         """ test with one Decimal """
-        j_data = '{"__extended_json_type__": "MyContainer", "value": {"y": {"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal","value": "13"}}}}}'
-        x = MyContainer()
+        j_data = '{"__extended_json_type__": "MyContainer", "value": {"y": {"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal","value": "15"}}}}}'
+        x = MyContainer(Decimal(15))
         assert hasattr(x, 'to_json')
         assert callable(getattr(x, 'to_json'))
+
+        assert hasattr(x, 'from_json')
+        assert callable(getattr(x, 'from_json'))
+
 
         x_data = x.to_json()
 

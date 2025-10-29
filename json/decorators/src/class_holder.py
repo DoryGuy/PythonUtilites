@@ -4,9 +4,9 @@ json decorator class to hold a list of json class names for decoding.
 '''
 
 class ClassHolder:
-    '''
+    """
     https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object
-    '''
+    """
 
     def __init__(self):
         ''' init '''
@@ -14,14 +14,14 @@ class ClassHolder:
 
     # -- the decorator
     def register(self, c):
-        ''' register a class with the holder '''
+        """ register a class with the holder """
         self.classes[c.__name__] = c
 
         # Decorators have to return the function/class passed (or a modified variant thereof)
         return c
 
     def __getitem__(self, name):
-        ''' get a class by name '''
+        """ get a class by name """
         if name not in self.classes:
             raise KeyError(f"Name '{name}' not found")
         return self.classes[name]

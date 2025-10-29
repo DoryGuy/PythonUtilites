@@ -22,7 +22,7 @@ class ExtendedJsonEncoder(json.JSONEncoder):
         super().__init__(*args, **kwargs)
 
     def default(self, obj):     # pylint: disable=arguments-renamed
-        ''' convert objects and classes to JSON '''
+        """ convert objects and classes to JSON """
         name = type(obj).__name__
         member_fn = f"encode_{name}"
         if hasattr(self, member_fn):

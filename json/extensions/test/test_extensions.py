@@ -42,7 +42,7 @@ class TestOneClassDecimal (unittest.TestCase):
     def test_1(self) -> None:
         """ test with one Decimal """
 
-        j_data = '{"__extended_json_type__": "MyClass": "value": {"x": {"__extended_json_type__": {"Decimal", {"value": "13"}}}}}'
+        j_data = '{"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal", "value": "13"}}}'
         d = MyClass.from_json(j_data)
         d_expected = Decimal(13)
         assert d_expected == d.x

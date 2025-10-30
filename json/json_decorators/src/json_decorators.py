@@ -21,12 +21,12 @@ class json_decorator:
         return cls
 
     def to_json_2(self) -> str:
-        """ dump to json """
+        """ dump to json without a custom encoder """
         return json.dumps(convert_to_json(self),
                           **self.kwargs)
 
     def to_json_3(self) -> str:
-        """ dump to json """
+        """ dump to json with a custom encoder """
         return json.dumps(convert_to_json(self),
                           cls=self.encoder,
                           **self.kwargs)
@@ -42,19 +42,23 @@ class json_decorator:
         return cls
 
     def from_json_2(cls,json_stuff):     # pylint: disable=no-self-argument
-        """ from a json dict """
+        """ from a json dict without a custom decoder"""
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
+            if not self.kwargs:
+                return json.loads(json_stuff, **self.kwargs)
             return json.loads(json_stuff)
         if isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
 
-    def from_json_3(cls, json_stuff, decoder):     # pylint: disable=no-self-argument
-        """ from a json dict """
+    def from_json_3(cls, json_stuff):     # pylint: disable=no-self-argument
+        """ from a json dict with a custom decoder """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            return json.loads(json_stuff, cls=decoder)
+            if not self.kwargs:
+                return json.loads(json_stuff, cls=self.decoder, **self.kwargs)
+            return json.loads(json_stuff, cls=self.decoder)
         if isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
@@ -63,8 +67,7 @@ class json_decorator:
         """ add a static class member from_json """
         if not hasattr(cls, "from_json"):
             if self.decoder is not None:
-                cls.from_json = classmethod(lambda cls, js: json_decorator.from_json_3(cls, js, self.decoder))
+                cls.from_json = classmethod(lambda cls, js: json_decorator.from_json_3(cls, js))
             else:
                 cls.from_json =  classmethod(json_decorator.from_json_2)
-
         return cls

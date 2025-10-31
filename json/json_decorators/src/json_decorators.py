@@ -1,7 +1,6 @@
 # pylint: disable=too-few-public-methods,invalid-name,line-too-long
 """ Class to add default to_json and from_json """
 
-#from  functools import partialmethod
 import json
 from json_convert import convert_to_json
 
@@ -22,11 +21,16 @@ class json_decorator:
 
     def to_json_2(self) -> str:
         """ dump to json without a custom encoder """
+        if not self.kwargs:
+            return json.dumps(convert_to_json(self))
         return json.dumps(convert_to_json(self),
-                          **self.kwargs)
+                              **self.kwargs)
 
     def to_json_3(self) -> str:
         """ dump to json with a custom encoder """
+        if not self.kwargs:
+            return json.dumps(convert_to_json(self),
+                              cls=self.encoder)
         return json.dumps(convert_to_json(self),
                           cls=self.encoder,
                           **self.kwargs)
@@ -45,20 +49,16 @@ class json_decorator:
         """ from a json dict without a custom decoder"""
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            if not self.kwargs:
-                return json.loads(json_stuff, **self.kwargs)
             return json.loads(json_stuff)
         if isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
 
-    def from_json_3(cls, json_stuff):     # pylint: disable=no-self-argument
+    def from_json_3(cls, json_stuff, decoder):     # pylint: disable=no-self-argument
         """ from a json dict with a custom decoder """
         # pylint: disable=possibly-used-before-assignment
         if isinstance(json_stuff, (bytes, bytearray, str)):
-            if not self.kwargs:
-                return json.loads(json_stuff, cls=self.decoder, **self.kwargs)
-            return json.loads(json_stuff, cls=self.decoder)
+            return json.loads(json_stuff, cls=decoder)
         if isinstance(json_stuff, dict):
             data = json_stuff
         return cls(**data)
@@ -67,7 +67,7 @@ class json_decorator:
         """ add a static class member from_json """
         if not hasattr(cls, "from_json"):
             if self.decoder is not None:
-                cls.from_json = classmethod(lambda cls, js: json_decorator.from_json_3(cls, js))
+                cls.from_json = classmethod(lambda cls, js: json_decorator.from_json_3(cls, js, self.decoder))
             else:
                 cls.from_json =  classmethod(json_decorator.from_json_2)
         return cls

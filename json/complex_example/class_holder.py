@@ -1,1 +1,1 @@
-../extensions/src/class_holder.py
+../decorators/src/class_holder.py

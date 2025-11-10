@@ -13,12 +13,12 @@ class ClassHolder:
         self.classes = {}
 
     # -- the decorator
-    def register(self, c):
+    def register(self, cls):
         """ register a class with the holder """
-        self.classes[c.__name__] = c
+        self.classes[cls.__name__] = cls
 
         # Decorators have to return the function/class passed (or a modified variant thereof)
-        return c
+        return cls
 
     def __getitem__(self, name):
         """ get a class by name """

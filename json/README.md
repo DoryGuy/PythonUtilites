@@ -12,14 +12,14 @@ json in python for the future projects.
 As I find other ways of improving using python to read and write Json I'll update this resource.
 
 ## [basic](basic)
-is just that, a basic json utility to write out a Decimal field in a class. There is a an example of how to use it, and
-a terrible way to also write the classes holding it. (A series of if statements to check the type of the field, one for 
+Basic is just that, a basic json utility to write out a Decimal field in a class. There is a an example of how to use it, and
+a terrible example of a way to also write the classes holding it. (A series of if statements to check the type of the field, one for 
 each class type that needs to be serialized, deserialized)
 
 This is the closest to the python documentation which nearly always uses `complex` as the example.
 
 ## [decorators](decorators)
-Using a decorator to note the classes that need to be serialized, it separates the serialization and deserialization
+This library uses a decorator to note the classes that need to be serialized, it separates the serialization and deserialization
 from the Json Encoder and Decoder.  This allows for a cleaner separation of concerns, and makes it easier to
 maintain. It also allows for easier expansion of the project in the future, as new classes can be added without breaking
 existing code.
@@ -49,14 +49,6 @@ the base classes `ExtendedJsonEncoder`, and `ExtendedJsonDecoder`, and then add 
 with the special name `encode_<type>` and `decode_<type>` where `<type>` is the name of the type we are dealing with.
 ie `encode_Decimal` and `decode_Decimal` for the Decimal type, `encode_complex`, `decode_complex` etc.
 
-The code in the library looks complex and yet makes it easy to add modules to handle things like datetime, range, complex etc.
-So that your code is easy to read and maintain.
-
-This is the most advanced version of the utilities, and is the one I use in my projects. It uses some fancy pants
-patterns from python ie. annotations, so might not be the easiest to understand at first, but it is the most powerful and flexible and it's
-the easiest to use.
-
-Just follow the code in the examples directory, and you will see how to use it.
 
 ## [recursive](recursive)
 This library is from this blog post:
@@ -71,9 +63,19 @@ This library uses a decorator to generate a 'to_json' member function and a clas
 plate code found in json_decorotors.  It's to help eliminate repetitive coding and thus reduce bugs.
 It relies on techniques from the decorators and the extensions libraries.
 
+This is the most advanced version of the utilities, and is the one I use in my projects. It uses some fancy pants
+patterns from python ie. annotations, so might not be the easiest to understand at first, but it is the most powerful and flexible and it's
+the easiest to use.
+
+The code in the library looks complex and yet makes it easy to add modules to handle things like datetime, range, complex etc.
+So that your code is easy to read and maintain.
+
+Just follow the code in the examples directory, and you will see how to use it.
+
 ## [complex_example](complex_example)
 Using a more complex employee class, I used the above techniques to create JSON read and writing
-functions. This uses the decorators, the extensions library, json_decorators and the recursive library.
-There is a List of contacts, of which the Contact class has inheritence, an Address class which is a basic
+functions. This example uses the decorators library, the extensions library, json_decorators and the recursive library.
+
+There is a List of contacts, of which the Contact class uses inheritence, an Address class which is a basic
 data structure, and a Name class also a basic data structure.  The Employee class uses the same inheritence
 as the basic example.

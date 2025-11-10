@@ -16,7 +16,7 @@ from json_register import json_class_registry
 
 @dataclass(kw_only=True)
 @json_class_registry.register
-@json_decorator(encoder=MyJsonEncoder,decoder=MyJsonDecoder, indent=4, sort_keys=True)
+@json_decorator(encoder=MyJsonEncoder,decoder=MyJsonDecoder, sort_keys=True)
 class MyClass():
     """ A test class """
     #pylint: disable=unnecessary-lambda
@@ -24,7 +24,7 @@ class MyClass():
 
 @dataclass(kw_only=True)
 @json_class_registry.register
-@json_decorator(encoder=MyJsonEncoder,decoder=MyJsonDecoder, indent=4, sort_keys=True)
+@json_decorator(encoder=MyJsonEncoder,decoder=MyJsonDecoder, sort_keys=True)
 class MyContainer():
     """ test container class """
     #pylint: disable=unnecessary-lambda
@@ -63,7 +63,7 @@ class TestBasicDecoratorDecimal (unittest.TestCase):
 
     def test_1(self) -> None:
         """ test with one MyClass """
-        j_data = '{"__extended_json_type__": "MyContainer", "value": {"y": {"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal","value": "15"}}}}}'
+        j_data = '{"__extended_json_type__": "MyContainer", "value": {"y": {"__extended_json_type__": "MyClass", "value": {"x": {"__extended_json_type__": "Decimal", "value": "15"}}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
         assert hasattr(d, 'to_json')
         assert callable(getattr(d, 'to_json'))

@@ -2,17 +2,17 @@
 
 ## Overview
 The python documentation [JSON encoder and decoder](https://docs.python.org/3/library/json.html) is 
-notoriously difficult to understand how to actually use the json module for anything but
-basic data or simple objects like complex. I ended up needing to use json to write a class that inherited from a base
+notoriously difficult to understand how to actually use the JSON module for anything but
+basic data or simple objects like complex. I ended up needing to use JSON to write a class that inherited from a base
 class, and had a Decimal field.  My first attempt was pretty awful but it worked well enough.
 
 I have since found much better ways to do this, and I have written a few utilities that make it much easier to work with
-json in python for the future projects.
+JSON in python for the future projects.
 
-As I find other ways of improving using python to read and write Json I'll update this resource.
+As I find other ways of improving using python to read and write JSON I'll update this resource.
 
 ## [basic](basic)
-Basic is just that, a basic json utility to write out a Decimal field in a class. There is a an example of how to use it, and
+Basic is just that, a basic JSON utility to write out a Decimal field in a class. There is a an example of how to use it, and
 a terrible example of a way to also write the classes holding it. (A series of if statements to check the type of the field, one for 
 each class type that needs to be serialized, deserialized)
 
@@ -20,7 +20,7 @@ This is the closest to the python documentation which nearly always uses `comple
 
 ## [decorators](decorators)
 This library uses a decorator to note the classes that need to be serialized, it separates the serialization and deserialization
-from the Json Encoder and Decoder.  This allows for a cleaner separation of concerns, and makes it easier to
+from the JSON Encoder and Decoder.  This allows for a cleaner separation of concerns, and makes it easier to
 maintain. It also allows for easier expansion of the project in the future, as new classes can be added without breaking
 existing code.
 

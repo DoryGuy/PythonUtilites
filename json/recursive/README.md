@@ -43,49 +43,49 @@ class MyClass:
         return cls(**data)
 ```
 
-### Conclusion
+## Conclusion
 This technique can be combined with the other techniques like the [decorators](../decorators) and the [extensions](../extensions) 
 to make easy to maintain classes that have complex data structures.
 
-### src Files
+## src Files
 
-## [json_convert.py](src/json_convert.py)
+### [json_convert.py](src/json_convert.py)
 The recursive function to walk the data tree of an object.
 
-### example Files
+## example Files
 
-## [employee.py](example/employee.py)
+### [employee.py](example/employee.py)
 A group of employee classes that can be serialized to JSON
 
-## [json_decimal.py](../basic/src/json_decimal.py)
+### [json_decimal.py](../basic/src/json_decimal.py)
 Same one from the basic src library
 
 A custom JSON encoder and decoder that handles the serialization and deserialization of Decimal objects.
 
-## [json_encoders_decoders.py](../basic/example/json_encoders_decoders.py)
+### [json_encoders_decoders.py](../basic/example/json_encoders_decoders.py)
 Same one from the basic example library
 
 A custom encoder and decoder for the Employee classes.
 
-## [main.py](../basic/example/main.py)
+### [main.py](../basic/example/main.py)
 Same one from the basic example
 
 A simple example of how to read and write JSON files using the custom JSON encoder and decoder.
 
-## [management.py](../basic/example/management.py)
+### [management.py](../basic/example/management.py)
 Same file as the basic example
 
 A class to hold a dictionary of employees.
 
-## [name.py](example/name.py)
+### [name.py](example/name.py)
 A simple class to hold a employee name.
 
-## [save_employees.py](../basic/example/save_employees.py)
+### [save_employees.py](../basic/example/save_employees.py)
 Same file as the basic example
 
 A couple of functions to save and load employees to and from a JSON file.
 
-### test Files
+## test Files
 
-## [test_recursive.py](test/test_recursive.py)
+### [test_recursive.py](test/test_recursive.py)
 The unit tests for this library

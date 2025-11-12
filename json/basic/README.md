@@ -36,7 +36,7 @@ I found it frustrating to use. I created these modules to help make it easier to
 types. I hope you find them useful.
 
 ## src Files
-## [json_decimal.py](src/json_decimal.py)
+### [json_decimal.py](src/json_decimal.py)
 This module provides a simple custom JSON encoder and decoder for handling Python's `Decimal` type. It ensures that `Decimal`
 objects are serialized to JSON as string, and can be read back into `Decimal` objects from JSON strings.
 
@@ -57,7 +57,7 @@ A class to hold a dictionary of employees.
 ### [save_employees.py](example/save_employees.py)
 A couple of functions to save and load employees to and from a JSON file.
 
-### test Files
+## test Files
 
-## [test_basic.py](test/test_basic.py)
+### [test_basic.py](test/test_basic.py)
 The unit tests for this library

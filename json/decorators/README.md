@@ -12,7 +12,7 @@ uses those methods to serialize and deserialize the objects. This allows for a c
 classes themselves handle their own serialization logic, while the custom JSON encoder and decoder handle the actual
 serialization and deserialization process.
 
-It requires that the classes you want to serialize implement a `to_json` method that returns a dictionary representation
+It requires that the classes you want to serialize implement a `to_json` member method that returns a dictionary representation
 of the object, and a `from_json` class method that can create an instance of the class from a dictionary.
 
 It also requires that the classes are annotated with @json_class_registry.register to register them with the JSON 
@@ -45,7 +45,7 @@ class MyClass:
 This implementation is more complex, but it's more flexible and allows for a cleaner separation of concerns. And it
 makes the classes themselves easier to write and test.
 
-But we can do better, so checkout the extending json module section for a more advanced implementation that handles
+But we can do better, so checkout the [extensions](../extensions)  json module section for a more advanced implementation that handles
 multiple types of objects within the class such as Decimal, complex, datetime, and more.
 
 

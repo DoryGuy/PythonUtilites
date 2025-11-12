@@ -47,6 +47,8 @@ class MyClass:
 This technique can be combined with the other techniques like the [decorators](../decorators) and the [extensions](../extensions) 
 to make easy to maintain classes that have complex data structures.
 
+Is used in the [json_decorators](../json_decorators) library which I recommend as the easiest to use in a large project.
+
 ## src Files
 
 ### [json_convert.py](src/json_convert.py)

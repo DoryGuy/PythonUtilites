@@ -5,11 +5,14 @@ In this project, we will create a JSON Encoder and Decoder that can handle custo
 when you want to serialize and deserialize complex data structures that are not natively supported by the JSON module in
 Python.
 
-We use a combination of inheritance and custom methods to extend the functionality of the JSON module. The inheritance
-allows us to create specialized encoders and decoders for code which we do not have control over, such as complex,
-Decimal, and range.
+We use the class registry from the [decorators](../decorators) library to register the classes for the serialization and 
+deserialization.
 
-We use a fixed naming convention for the classes, 'to_json' for the encoder and 'from_json' for the decoder in the
+For the custom types wee use a combination of inheritance and custom methods to extend the functionality of the 
+JSON module. The inheritance allows us to create specialized encoders and decoders for code which we do 
+not have control over, such as complex, Decimal, and range.
+
+We use a fixed naming convention for the member functions in the classes, 'to_json' for the encoder and 'from_json' for the decoder in the
 classes we create. Then we use a register annotation to register the classes with the JSON module. This allows a
 seperation of concerns, where the JSON module is responsible for the serialization and deserialization, while our
 classes are responsible for the data structure and logic.

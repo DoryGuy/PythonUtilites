@@ -47,7 +47,7 @@ class MyClass():
 @json_class_registry.register
 class MyContainer():
     """ test class """
-    y :MyClass = field(default_factory=lambda: MyClass())
+    y :MyClass = field(default_factory=lambda: MyClass(0,0,0))   # pylint: disable=unnecessary-lambda
 
     def __init__(self,y: MyClass) -> None:
         self.y = y
@@ -96,7 +96,7 @@ class TestOneClassInt (unittest.TestCase):
 
         d2 = MyClass.from_json(j_data)
         d3 = MyClass.from_json(j)
-        assert d == d3
+        assert d2 == d3
 
     def test_3(self) -> None:
         """ test my container """
@@ -107,6 +107,37 @@ class TestOneClassInt (unittest.TestCase):
         j_data = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 2, "y": 3, "z": 4}}}}'
         assert data_j == j_data
 
+class TestBasicTest (unittest.TestCase):
+    """
+    Unit Test class for basic encoder and decoder
+    """
+
+    def test_1(self) -> None:
+        """ test with basic data """
+
+        j_data = '10'
+
+        d = json.loads(j_data, cls=MyJsonDecoder)
+        d_expected = 10
+        assert d == d_expected
+
+        d_j_data = json.dumps(d_expected, cls=MyJsonEncoder)
+
+        assert j_data == d_j_data
+
+    def test_2(self) -> None:
+        """ test with basic data """
+
+        j_data = '"foobar"'
+
+        d = json.loads(j_data, cls=MyJsonDecoder)
+        d_expected = "foobar"
+        assert d == d_expected
+
+        d_j_data = json.dumps(d_expected, cls=MyJsonEncoder)
+
+        assert j_data == d_j_data
+
 class TestBasicDecoratorInt (unittest.TestCase):
     """
     Unit Test class for basic encoder and decoder
@@ -116,15 +147,14 @@ class TestBasicDecoratorInt (unittest.TestCase):
         """ test with one class with two ints """
 
         j_data = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 15, "y": 16, "z": 17}}}}'
-        #d = json.loads(j_data,cls=MyJsonDecoder)
-        d2 = MyContainer.from_json(j_data)
+        d = json.loads(j_data,cls=MyJsonDecoder)
+        #d2 = MyContainer.from_json(j_data)
         d_expected_x = int(15)
-        assert d_expected_x == d2.y.x
-        #assert d_expected_x == d.y.x
+        assert d_expected_x == d.y.x
         d_expected_z = int(17)
-        #assert d_expected_z == d.y.z
+        assert d_expected_z == d.y.z
 
-        d_j_data = d2.to_json()
+        d_j_data = d.to_json()
 
         assert j_data == d_j_data
 

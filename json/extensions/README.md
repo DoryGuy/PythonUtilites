@@ -144,3 +144,8 @@ A class to hold a dictionary of employees.
 Same file as from basic example.
 
 A couple of functions to save and load employees to and from a JSON file.
+
+### test Files
+
+## [test_extensions.py](test/test_extensions.py)
+The unit tests for this library

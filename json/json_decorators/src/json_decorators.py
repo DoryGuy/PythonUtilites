@@ -4,21 +4,6 @@
 import json
 from json_convert import convert_to_json
 
-def to_json_2(self, **kwargs) -> str:
-    """ dump to json without a custom encoder """
-    if not kwargs:
-        return json.dumps(convert_to_json(self))
-    return json.dumps(convert_to_json(self),
-                          **kwargs)
-
-def to_json_3(self,encoder, **kwargs) -> str:
-    """ dump to json with a custom encoder """
-    if not kwargs:
-        return json.dumps(convert_to_json(self),
-                          cls=encoder)
-    return json.dumps(convert_to_json(self),
-                      cls=encoder,
-                      **kwargs)
 class json_decorator:
     """ class to add default Json read and write. fns. """
     def __init__(self, *, encoder = None, decoder = None, **kwargs) -> None:
@@ -34,13 +19,28 @@ class json_decorator:
         cls = self.add_from_json(cls)
         return cls
 
+    def to_json_2(self, **kwargs) -> str:
+        """ dump to json without a custom encoder """
+        if not kwargs:
+            return json.dumps(convert_to_json(self))
+        return json.dumps(convert_to_json(self),
+                              **kwargs)
+
+    def to_json_3(self,encoder, **kwargs) -> str:
+        """ dump to json with a custom encoder """
+        if not kwargs:
+            return json.dumps(convert_to_json(self),
+                              cls=encoder)
+        return json.dumps(convert_to_json(self),
+                          cls=encoder,
+                          **kwargs)
     def add_to_json(self,cls):
         """ add the to_json fn if it doesn't exist """
         if not hasattr(cls,"to_json"):
             if self.encoder is not None:
-                setattr(cls, "to_json", lambda x: to_json_3(x, self.encoder, **self.kwargs))
+                setattr(cls, "to_json", lambda x: type(self).to_json_3(x, self.encoder, **self.kwargs))
             else:
-                setattr(cls, "to_json", lambda x: to_json_2(x, **self.kwargs))
+                setattr(cls, "to_json", lambda x: type(self).to_json_2(x, **self.kwargs))
 
         return cls
 

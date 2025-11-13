@@ -44,7 +44,7 @@ class ExtendedJsonEncoder(json.JSONEncoder):
             raise AttributeError(f"Class {name} does not have a callable to_json method.")
 
         if hasattr(obj, '__dict__'):
-           return obj.__dict__
+            return obj.__dict__
 
         return super().default(obj)
 

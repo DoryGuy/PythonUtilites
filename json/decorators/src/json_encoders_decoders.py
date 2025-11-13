@@ -60,6 +60,6 @@ class MyJsonDecoder(json.JSONDecoder):
                 if hasattr(c, 'from_json') and callable(c.from_json):
                     return c.from_json(obj['value'])
                 raise AttributeError(f"Class {name} does not have a callable from_json method.")
-            except KeyError:
-                raise AttributeError(f"Class {name} is not registered in json_class_registry.")
+            except KeyError as exc:
+                raise AttributeError(f"Class {name} is not registered in json_class_registry.") from exc
         return obj

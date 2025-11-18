@@ -17,8 +17,7 @@
 """
 # import the necessary python libraries and the code to test.
 import unittest
-import src
-from src.get_integer import get_integer
+from get_integer import get_integer
 
 class TestGetInteger (unittest.TestCase):
     """

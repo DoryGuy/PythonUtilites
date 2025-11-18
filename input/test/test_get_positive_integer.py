@@ -17,8 +17,7 @@
 """
 # import the necessary python libraries and the code to test.
 import unittest
-import src
-from src.get_positive_integer import get_positive_integer
+from get_positive_integer import get_positive_integer
 
 class TestGetPositiveInteger (unittest.TestCase):
     """

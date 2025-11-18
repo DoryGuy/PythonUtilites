@@ -17,8 +17,7 @@
 '''
 # import the necessary python libraries and the code to test.
 import unittest
-import src
-from src.get_number import get_number
+from get_number import get_number
 
 class TestGetNumber (unittest.TestCase):
     '''

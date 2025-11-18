@@ -18,8 +18,7 @@
 # import the necessary python libraries and the code to test.
 from decimal import Decimal
 import unittest
-import src
-from src.get_positive_decimal_number import get_positive_decimal_number
+from get_positive_decimal_number import get_positive_decimal_number
 
 class TestGetPositiveRealNumber (unittest.TestCase):
     '''

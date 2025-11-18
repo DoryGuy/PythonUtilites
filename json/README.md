@@ -1,4 +1,4 @@
-# Json Utilies for Python
+# JSON Utilities for Python
 
 ## Overview
 The python documentation [JSON encoder and decoder](https://docs.python.org/3/library/json.html) is 

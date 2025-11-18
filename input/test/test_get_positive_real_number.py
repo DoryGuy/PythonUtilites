@@ -17,8 +17,7 @@
 """
 # import the necessary python libraries and the code to test.
 import unittest
-import src
-from src.get_positive_real_number import get_positive_real_number
+from get_positive_real_number import get_positive_real_number
 
 
 class TestGetPositiveRealNumber (unittest.TestCase):

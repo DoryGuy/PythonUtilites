@@ -87,7 +87,7 @@ class TestGetNumber (unittest.TestCase):
         test get negative int
         '''
         try:
-            response = get_positive_number("-5")
+            _ = get_positive_number("-5")
         except ValueError:
             # we expect only this isinstance of error.
             assert True
@@ -97,7 +97,7 @@ class TestGetNumber (unittest.TestCase):
         test get negative float
         '''
         try:
-            response = get_positive_number("-5.1")
+            _ = get_positive_number("-5.1")
         except ValueError:
             # we expect only this isinstance of error.
             assert True
@@ -107,7 +107,7 @@ class TestGetNumber (unittest.TestCase):
         test get negative complex
         '''
         try:
-            response = get_positive_number("-5.1+1j")
+            _ = get_positive_number("-5.1+1j")
         except ValueError:
             # we expect only this isinstance of error.
             assert True

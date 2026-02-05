@@ -18,11 +18,9 @@ class MyClass():
     """ A test class """
     x: Decimal = field(default_factory= lambda: Decimal(13))
 
-    def to_json(self) -> str:
-        """ dump to json """
-        return json.dumps(self,
-                          sort_keys = True,
-                          cls=MyJsonEncoder)
+    def to_json(self) -> dict:
+        """ return a dict for json serialization """
+        return {'x': self.x}
 
     @classmethod
     def from_json(cls, json_stuff):
@@ -47,6 +45,6 @@ class TestOneClassDecimal (unittest.TestCase):
         d_expected = Decimal(13)
         assert d_expected == d.x
 
-        d_j_data = d.to_json()
+        d_j_data = json.dumps(d, cls=MyJsonEncoder, sort_keys=True)
 
         assert j_data == d_j_data

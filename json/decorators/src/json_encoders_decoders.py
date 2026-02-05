@@ -29,12 +29,12 @@ class MyJsonEncoder(json.JSONEncoder):
         """ override the default """
         name = type(obj).__name__
         if hasattr(obj, '__class__') and name in json_class_registry.classes:
-            if hasattr(obj,'items') and callable(obj.items):
-                return {'__ClassName__': name, 'value': obj.items()}
-            if hasattr(obj, '__dict__'):
-                return {'__ClassName__': name, 'value': obj.__dict__}
             if hasattr(obj, 'to_json') and callable(obj.to_json):
                 return {'__ClassName__': name, 'value': obj.to_json()}
+            if hasattr(obj, '__dict__'):
+                return {'__ClassName__': name, 'value': obj.__dict__}
+            if hasattr(obj,'items') and callable(obj.items):
+                return {'__ClassName__': name, 'value': obj.items()}
 
             raise AttributeError(f"Class {name} does not have a callable to_json method.")
 

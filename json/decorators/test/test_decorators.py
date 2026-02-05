@@ -165,3 +165,72 @@ class TestBasicDecoratorInt (unittest.TestCase):
         c = MyContainer(d)
 
         j = c.to_json()
+
+
+@json_class_registry.register
+class ClassWithSecret():
+    """
+    A test class that has a secret field which should NOT be serialized.
+    The to_json method excludes the secret, so if to_json is called correctly,
+    the secret will not appear in the JSON output.
+    """
+    def __init__(self, name: str, secret: str):
+        self.name = name
+        self.secret = secret  # should NOT be serialized
+
+    def to_json(self) -> dict:
+        """ Return only the name, excluding the secret """
+        return {'name': self.name}
+
+    @classmethod
+    def from_json(cls, json_stuff):
+        """ Reconstruct from json dict """
+        if isinstance(json_stuff, dict):
+            # When deserializing, secret is not available, use placeholder
+            return cls(name=json_stuff['name'], secret='')
+        return None
+
+
+class TestToJsonPriority(unittest.TestCase):
+    """
+    Unit tests to verify that to_json() method takes priority over __dict__.
+    This is critical for classes that need to exclude sensitive fields or
+    customize their JSON representation.
+    """
+
+    def test_to_json_excludes_secret_field(self) -> None:
+        """
+        Test that to_json() is called instead of __dict__, ensuring
+        the secret field is NOT included in the JSON output.
+        """
+        obj = ClassWithSecret(name="test_user", secret="super_secret_password")
+
+        # Encode to JSON
+        j = json.dumps(obj, cls=MyJsonEncoder)
+
+        # Verify secret is NOT in the output
+        self.assertNotIn("super_secret_password", j)
+        self.assertNotIn("secret", j)
+
+        # Verify name IS in the output
+        self.assertIn("test_user", j)
+        self.assertIn("name", j)
+
+    def test_to_json_round_trip(self) -> None:
+        """
+        Test that encoding and decoding works correctly when to_json()
+        returns a subset of fields.
+        """
+        obj = ClassWithSecret(name="alice", secret="password123")
+
+        # Encode to JSON
+        j = json.dumps(obj, cls=MyJsonEncoder)
+
+        # Decode from JSON
+        decoded = json.loads(j, cls=MyJsonDecoder)
+
+        # Verify the name was preserved
+        self.assertEqual(decoded.name, "alice")
+
+        # Verify the secret was not serialized (should be empty after round-trip)
+        self.assertEqual(decoded.secret, '')

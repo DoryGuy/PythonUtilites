@@ -25,11 +25,9 @@ class MyClass():
         self.y = y
         self.z = z
 
-    def to_json(self) -> str:
-        """ dump to json MyClass"""
-        return json.dumps(self,
-                          sort_keys = True,
-                          cls=MyJsonEncoder)
+    def to_json(self) -> dict:
+        """ return a dict for json serialization """
+        return {'x': self.x, 'y': self.y, 'z': self.z}
 
     @classmethod
     def from_json(cls, json_stuff):
@@ -52,11 +50,9 @@ class MyContainer():
     def __init__(self,y: MyClass) -> None:
         self.y = y
 
-    def to_json(self) -> str:
-        """ dump to json MyContainer """
-        return json.dumps(self,
-                          sort_keys = True,
-                          cls=MyJsonEncoder)
+    def to_json(self) -> dict:
+        """ return a dict for json serialization """
+        return {'y': self.y}
 
     @classmethod
     def from_json(cls, json_stuff):
@@ -81,7 +77,7 @@ class TestOneClassInt (unittest.TestCase):
         d_expected = int(13)
         assert d_expected == d.x
 
-        d_j_data = d.to_json()
+        d_j_data = json.dumps(d, cls=MyJsonEncoder, sort_keys=True)
 
         assert j_data == d_j_data
 
@@ -90,12 +86,12 @@ class TestOneClassInt (unittest.TestCase):
 
         j_data = '{"__ClassName__": "MyClass", "value": {"x": 14, "y": 16, "z": 19}}'
         d = MyClass(14,16,19)
-        j = d.to_json()
+        j = json.dumps(d, cls=MyJsonEncoder, sort_keys=True)
 
         assert j_data == j
 
         d2 = MyClass.from_json(j_data)
-        d3 = MyClass.from_json(j)
+        d3 = json.loads(j, cls=MyJsonDecoder)
         assert d2 == d3
 
     def test_3(self) -> None:
@@ -103,7 +99,7 @@ class TestOneClassInt (unittest.TestCase):
         mc = MyClass(2,3,4)
         d = MyContainer(mc)
 
-        data_j = d.to_json()
+        data_j = json.dumps(d, cls=MyJsonEncoder, sort_keys=True)
         j_data = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 2, "y": 3, "z": 4}}}}'
         assert data_j == j_data
 
@@ -148,13 +144,12 @@ class TestBasicDecoratorInt (unittest.TestCase):
 
         j_data = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 15, "y": 16, "z": 17}}}}'
         d = json.loads(j_data,cls=MyJsonDecoder)
-        #d2 = MyContainer.from_json(j_data)
         d_expected_x = int(15)
         assert d_expected_x == d.y.x
         d_expected_z = int(17)
         assert d_expected_z == d.y.z
 
-        d_j_data = d.to_json()
+        d_j_data = json.dumps(d, cls=MyJsonEncoder, sort_keys=True)
 
         assert j_data == d_j_data
 
@@ -164,7 +159,9 @@ class TestBasicDecoratorInt (unittest.TestCase):
         d = MyClass(13,6,11)
         c = MyContainer(d)
 
-        j = c.to_json()
+        j = json.dumps(c, cls=MyJsonEncoder, sort_keys=True)
+        expected = '{"__ClassName__": "MyContainer", "value": {"y": {"__ClassName__": "MyClass", "value": {"x": 13, "y": 6, "z": 11}}}}'
+        assert j == expected
 
 
 @json_class_registry.register
